@@ -3,7 +3,6 @@ name: commitizen
 on:
   push:
     branches:
-      - main
 
 jobs:
   commitizen:
