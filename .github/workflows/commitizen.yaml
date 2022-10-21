@@ -2,7 +2,8 @@ name: commitizen
 
 on:
   push:
-    branches: []
+    branches-ignore:
+      - "**"
 
 jobs:
   commitizen:
