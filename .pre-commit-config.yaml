@@ -1,5 +1,4 @@
 ci:
-  autofix_commit_msg: "ci: auto fixes [...]"
   skip:
     - latexindent
 
