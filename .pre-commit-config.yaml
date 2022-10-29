@@ -1,6 +1,7 @@
 ci:
   skip:
     - latexindent
+    - poetry-lock
 
 repos:
   - repo: https://github.com/commitizen-tools/commitizen
