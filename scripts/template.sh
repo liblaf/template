@@ -5,12 +5,12 @@ set -o pipefail
 
 if command -v rich >/dev/null 2>&1; then
   function info() {
-    rich --print "[bold bright_blue]+ ${*}"
+    rich --print "[bold bright_blue]${*}"
   }
 else
   function info() {
     echo -e -n "\x1b[1;94m"
-    echo -n "+ ${*}"
+    echo -n "${*}"
     echo -e "\x1b[0m"
   }
 fi
