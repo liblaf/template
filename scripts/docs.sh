@@ -3,9 +3,16 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+function _exec() {
+  echo -e -n "\033[1;94m"
+  echo -n "${@}"
+  echo -e "\033[0m"
+  "${@}"
+}
+
 function prepare() {
   if [[ ! -f "docs/index.md" ]]; then
-    cp "README.md" "docs/index.md"
+    _exec cp "README.md" "docs/index.md"
   fi
 }
 
