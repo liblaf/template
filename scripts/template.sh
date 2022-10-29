@@ -38,5 +38,5 @@ done
 call gh repo edit --homepage "https://liblaf.github.io/${REPO_NAME}/"
 
 call git add .
-call git commit --message "build: initialize" --verity --gpg-sign
+call git commit --message "build: initialize" --verify --gpg-sign
 call git push
