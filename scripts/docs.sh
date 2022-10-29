@@ -13,6 +13,6 @@ cmd="${1}"
 shift 1
 case "${cmd}" in
 *)
-  prepare "${@}"
+  "${cmd}" "${@}"
   ;;
 esac
