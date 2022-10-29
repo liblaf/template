@@ -19,3 +19,5 @@ files=(
 for file in "${files[@]}"; do
   _exec sed --in-place "s/template/${REPO_NAME}/g" "${file}"
 done
+
+gh repo edit --homepage "https://liblaf.github.io/${REPO_NAME}/"
