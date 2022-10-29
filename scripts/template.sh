@@ -3,12 +3,20 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-function info() {
-  rich --print "[bold bright_blue]${*}"
-}
+if command -v rich >/dev/null 2>&1; then
+  function info() {
+    rich --print "[bold bright_blue]+ ${*}"
+  }
+else
+  function info() {
+    echo -e -n "\x1b[1;94m"
+    echo -n "+ ${*}"
+    echo -e "\x1b[0m"
+  }
+fi
 
 function call() {
-  info "+ ${@}"
+  info "+ ${*}"
   "${@}"
 }
 
@@ -28,3 +36,7 @@ for file in "${files[@]}"; do
 done
 
 call gh repo edit --homepage "https://liblaf.github.io/${REPO_NAME}/"
+
+call git add .
+call git --message "build: initialize" --verity --gpg-sign
+call git push
