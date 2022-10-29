@@ -21,6 +21,8 @@ repos:
     rev: "v2.4.0"
     hooks:
       - id: pretty-format-toml
+        args:
+          - "--autofix"
         exclude: poetry.lock
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: "v14.0.6"
@@ -58,3 +60,8 @@ repos:
       - id: poetry-check
       - id: poetry-lock
       - id: poetry-export
+        args:
+          - "--output"
+          - "requirements.txt"
+          - "--without-hashes"
+          - "--without-urls"
