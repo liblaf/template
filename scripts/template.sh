@@ -20,4 +20,9 @@ for file in "${files[@]}"; do
   _exec sed --in-place "s/template/${REPO_NAME}/g" "${file}"
 done
 
+files=(.github/workflows/**.yaml)
+for file in "${files[@]}"; do
+  _exec sed --in-place "s/branches-ignore/branches/g" "${file}"
+done
+
 gh repo edit --homepage "https://liblaf.github.io/${REPO_NAME}/"
