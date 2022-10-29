@@ -4,13 +4,11 @@ set -o nounset
 set -o pipefail
 
 function info() {
-  echo -e -n "\033[1;94m"
-  echo -n "${@}"
-  echo -e "\033[0m"
+  rich --print "[bold bright_blue]${*}"
 }
 
 function call() {
-  info "${@}"
+  info "+ ${@}"
   "${@}"
 }
 

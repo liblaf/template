@@ -3,17 +3,23 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-function _exec() {
-  echo -e -n "\033[1;94m"
-  echo -n "${@}"
-  echo -e "\033[0m"
+function call() {
+  rich --print "[bold bright_blue]+ ${*}"
   "${@}"
 }
 
 function prepare() {
   if [[ ! -f "docs/index.md" ]]; then
-    _exec cp "README.md" "docs/index.md"
+    call cp "README.md" "docs/index.md"
   fi
+}
+
+function build() {
+  call poetry run mkdocs build
+}
+
+function deploy() {
+  call poetry run mkdocs gh-deploy
 }
 
 cmd="${1}"
