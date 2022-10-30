@@ -13,4 +13,4 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Deploy MkDocs
-        uses: ./github/actions/docs
+        uses: ./.github/actions/docs

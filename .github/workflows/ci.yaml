@@ -30,10 +30,10 @@ jobs:
             echo "bumped=false" >> $GITHUB_OUTPUT
       - if: ${{ steps.bumped.outputs.bumped == 'true' }}
         name: Build and Upload Artifacts
-        uses: ./github/actions/deploy
+        uses: ./.github/actions/deploy
       - if: ${{ steps.bumped.outputs.bumped == 'true' }}
         name: Publish Package
-        uses: ./github/actions/publish
+        uses: ./.github/actions/publish
       - if: ${{ steps.bumped.outputs.bumped == 'true' }}
         name: GitHub Release
         uses: softprops/action-gh-release@v1
