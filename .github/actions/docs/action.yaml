@@ -27,10 +27,12 @@ runs:
       with:
         path: .venv
         key: venv-docs-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-    - name: Install dependencies
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+    - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      name: Install dependencies
+      shell: bash
       run: poetry install --with docs --no-root --no-interaction
     - name: Deploy GitHub Pages
+      shell: bash
       run: |
         source .venv/bin/activate
         bash scripts/docs.sh prepare
