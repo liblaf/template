@@ -1,5 +1,5 @@
 name: Build Artifacts
-description: Build and Upload Artifacts
+description: Build Artifacts
 
 runs:
   using: "composite"
