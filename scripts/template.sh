@@ -20,7 +20,7 @@ function call() {
   "${@}"
 }
 
-REPO_NAME="$(basename "$(realpath .)")"
+REPO_NAME="$(basename "$(pwd)")"
 files=(
   "mkdocs.yaml"
   "pyproject.toml"
