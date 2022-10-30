@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches-ignore:
+    branches:
       - "main"
 
 jobs:
@@ -17,7 +17,8 @@ jobs:
         uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 0
-      - id: cz
+      - if: ${{ github.repository == 'liblaf/template') }}
+        id: cz
         name: Create Bump and Changelog
         uses: commitizen-tools/commitizen-action@0.15.1
         with:
@@ -26,11 +27,13 @@ jobs:
       - id: bumped
         run: |
           if [[ -n "$(cat body.md)" ]]; then
+            echo "bumped = true"
             echo "bumped=true" >> $GITHUB_OUTPUT
           else
+            echo "bumped = false"
             echo "bumped=false" >> $GITHUB_OUTPUT
           fi
-      - if: ${{ steps.bumped.outputs.bumped }}
+      - if: ${{ steps.bumped.outputs.bumped == 'true' }}
         name: Upload Changelog
         uses: actions/upload-artifact@v3.1.1
         with:
@@ -39,7 +42,7 @@ jobs:
 
   publish:
     needs: cz
-    if: ${{ needs.cz.outputs.bumped }}
+    if: ${{ needs.cz.outputs.bumped == 'true' }}
     continue-on-error: true
     runs-on: ubuntu-latest
     steps:
@@ -53,7 +56,7 @@ jobs:
 
   deploy:
     needs: cz
-    if: ${{ needs.cz.outputs.bumped }}
+    if: ${{ needs.cz.outputs.bumped == 'true' }}
     continue-on-error: true
     strategy:
       matrix:
@@ -66,19 +69,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
       - run: git pull
-      - name: Build Artifacts
+      - id: detect
+        name: Detect Build Script
+        shell: bash
+        run: |
+          cat pyproject.toml | grep "build = \".*.build:run\""
+          if (( $? == 0 )); then
+            echo "build=true" >> $GITHUB_OUTPUT
+          else
+            echo "build=false" >> $GITHUB_OUTPUT
+          fi
+      - if: ${{ steps.detect.outputs.build }}
+        name: Build Artifacts
         uses: ./.github/actions/deploy
-      - name: Upload Artifacts
+      - if: ${{ steps.detect.outputs.build }}
+        name: Upload Artifacts
         uses: actions/upload-artifact@v3.1.1
         with:
           name: ${{ matrix.os }}
-          path: dist
+          path: dist/**/*
 
   release:
     needs:
       - cz
       - deploy
-    if: ${{ needs.cz.outputs.bumped }}
+    if: ${{ needs.cz.outputs.bumped == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -98,6 +113,6 @@ jobs:
           tag_name: ${{ needs.cz.outputs.version }}
           body_path: body.md
           files: |
-            artifacts/macos-latest/*
-            artifacts/ubuntu-latest/*
-            artifacts/windows-latest/*
+            artifacts/macos-latest/**/*
+            artifacts/ubuntu-latest/**/*
+            artifacts/windows-latest/**/*
