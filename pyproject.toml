@@ -15,6 +15,9 @@ description = ""
 authors = ["Qin Li <liblaf@outlook.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://liblaf.github.io/template/"
+repository = "https://github.com/liblaf/template"
+documentation = "https://liblaf.github.io/template"
 
 [tool.poetry.dependencies]
 python = "^3.10"
