@@ -11,7 +11,6 @@ jobs:
     outputs:
       bumped: ${{ steps.bumped.outputs.bumped }}
       version: ${{ steps.cz.outputs.version }}
-      changelog: ${{ steps.changelog.outputs.body }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,16 +23,19 @@ jobs:
         with:
           github_token: ${{ github.token }}
           changelog_increment_filename: body.md
-      - id: changelog
-        run: |
-          echo "body='$(cat body.md)'" >> $GITHUB_OUTPUT
       - id: bumped
         run: |
-          if [[ -n "${{ steps.changelog.outputs.body }}" ]]; then
+          if [[ -n "$(cat body.md)" ]]; then
             echo "bumped=true" >> $GITHUB_OUTPUT
           else
             echo "bumped=false" >> $GITHUB_OUTPUT
           fi
+      - if: ${{ steps.bumped.outputs.bumped }}
+        name: Upload Changelog
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: changelog
+          path: body.md
 
   publish:
     needs: cz
@@ -67,17 +69,23 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3.1.1
         with:
-          name: ${{ runner.os }}
+          name: ${{ matrix.os }}
           path: dist
 
   release:
-    needs: cz
+    needs:
+      - cz
+      - deploy
     if: ${{ needs.cz.outputs.bumped }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3.1.0
       - run: git pull
+      - name: Download Changelog
+        uses: actions/download-artifact@v3.0.1
+        with:
+          name: changelog
       - name: Download Artifacts
         uses: actions/download-artifact@v3.0.1
         with:
@@ -86,6 +94,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.cz.outputs.version }}
-          body: ${{ needs.cz.outputs.changelog }}
+          body_path: body.md
           files: |
-            artifacts/**/*
+            artifacts/macos-latest/*
+            artifacts/ubuntu-latest/*
+            artifacts/windows-latest/*
