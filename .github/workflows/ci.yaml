@@ -7,7 +7,7 @@ on:
 
 jobs:
   cz:
-    if: ${{ github.repository != 'liblaf/template') }}
+    if: ${{ github.repository != 'liblaf/template' }}
     outputs:
       bumped: ${{ steps.bumped.outputs.bumped }}
       version: ${{ steps.cz.outputs.version }}
