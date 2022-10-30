@@ -28,6 +28,7 @@ jobs:
             echo "bumped=true" >> $GITHUB_OUTPUT
           else
             echo "bumped=false" >> $GITHUB_OUTPUT
+          fi
       - if: ${{ steps.bumped.outputs.bumped == 'true' }}
         name: Build and Upload Artifacts
         uses: ./.github/actions/deploy
