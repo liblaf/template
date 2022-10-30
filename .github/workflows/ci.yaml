@@ -7,7 +7,7 @@ on:
 
 jobs:
   cz:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    if: ${{ github.repository != 'liblaf/template') }}
     outputs:
       bumped: ${{ steps.bumped.outputs.bumped }}
       version: ${{ steps.cz.outputs.version }}
@@ -17,8 +17,7 @@ jobs:
         uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 0
-      - if: ${{ github.repository == 'liblaf/template') }}
-        id: cz
+      - id: cz
         name: Create Bump and Changelog
         uses: commitizen-tools/commitizen-action@0.15.1
         with:
