@@ -78,10 +78,10 @@ jobs:
           else
             echo "build=false" >> $GITHUB_OUTPUT
           fi
-      - if: ${{ steps.detect.outputs.build }}
+      - if: ${{ steps.detect.outputs.build == 'true' }}
         name: Build Artifacts
         uses: ./.github/actions/deploy
-      - if: ${{ steps.detect.outputs.build }}
+      - if: ${{ steps.detect.outputs.build == 'true' }}
         name: Upload Artifacts
         uses: actions/upload-artifact@v3.1.1
         with:
