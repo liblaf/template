@@ -26,8 +26,11 @@ REPO_NAME="$(basename "$(pwd)")"
 
 description="${*}"
 echo "# ${REPO_NAME}" >"README.md"
-echo "" >>"README.md"
-echo "${description}" >>"README.md"
+if [[ -n "${description}" ]]; then
+  echo "" >>"README.md"
+  echo "${description}" >>"README.md"
+fi
+
 files=(
   "mkdocs.yaml"
   "pyproject.toml"
@@ -35,6 +38,7 @@ files=(
 for file in "${files[@]}"; do
   call sed --in-place "s/template/${REPO_NAME}/g" "${file}"
 done
+
 call sed --in-place "s/description = \"Repository Template\"/description = \"${description}\"/g" pyproject.toml
 
 call gh repo edit --description "${description}"
