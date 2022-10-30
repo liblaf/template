@@ -1,0 +1,7 @@
+name: Build Artifacts
+description: Build and Upload Artifacts
+
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Hello, world!"

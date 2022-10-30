@@ -1,0 +1,42 @@
+name: CI/CD
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+jobs:
+  commitizen:
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    outputs:
+      bumped: ${{ steps.bumped.outputs.bumped }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+        with:
+          fetch-depth: 0
+      - id: cz
+        name: Create Bump and Changelog
+        uses: commitizen-tools/commitizen-action@0.15.1
+        with:
+          github_token: ${{ github.token }}
+          changelog_increment_filename: body.md
+      - id: bumped
+        run: |
+          if [[ -n "$(cat body.md)" ]]; then
+            echo "bumped=true" >> $GITHUB_OUTPUT
+          else
+            echo "bumped=false" >> $GITHUB_OUTPUT
+      - if: ${{ steps.bumped.outputs.bumped == 'true' }}
+        name: Build and Upload Artifacts
+        uses: ./github/actions/deploy
+      - if: ${{ steps.bumped.outputs.bumped == 'true' }}
+        name: Publish Package
+        uses: ./github/actions/publish
+      - if: ${{ steps.bumped.outputs.bumped == 'true' }}
+        name: GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.cz.outputs.version }}
+          body_path: body.md
