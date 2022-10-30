@@ -25,9 +25,9 @@ cd "$(git rev-parse --show-toplevel || echo .)"
 REPO_NAME="$(basename "$(pwd)")"
 
 description="${*}"
-echo " # ${REPO_NAME}" >"README.md"
-echo "" >"README.md"
-echo "${description}" >"README.md"
+echo "# ${REPO_NAME}" >"README.md"
+echo "" >>"README.md"
+echo "${description}" >>"README.md"
 files=(
   "mkdocs.yaml"
   "pyproject.toml"
@@ -35,10 +35,11 @@ files=(
 for file in "${files[@]}"; do
   call sed --in-place "s/template/${REPO_NAME}/g" "${file}"
 done
+call sed --in-place "s/description = \"Repository Template\"/description = \"${description}\"/g" pyproject.toml
 
 call gh repo edit --description "${description}"
 call gh repo edit --homepage "https://liblaf.github.io/${REPO_NAME}/"
 
-call git add .
+call git add --all
 call git commit --message "build: initialize" --verify --gpg-sign
 call git push
