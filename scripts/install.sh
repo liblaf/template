@@ -22,7 +22,6 @@ function call() {
 
 REPO_HOME="$(realpath --canonicalize-missing "${0}/../..")"
 call cd "${REPO_HOME}"
-call sudo apt install libffi7
 call poetry run build
 mkdir --parents "${HOME}/.local/bin"
 call cp "${REPO_HOME}/dist/$(basename "${REPO_HOME}")" "${HOME}/.local/bin"
