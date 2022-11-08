@@ -3,7 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-if command -v rich >/dev/null 2>&1; then
+if command -v rich > /dev/null 2>&1; then
   function info() {
     rich --print "[bold bright_blue]${*}"
   }
@@ -25,10 +25,10 @@ cd "$(git rev-parse --show-toplevel || echo .)"
 REPO_NAME="$(basename "$(pwd)")"
 
 description="${*}"
-echo "# ${REPO_NAME}" >"README.md"
-if [[ -n "${description}" ]]; then
-  echo "" >>"README.md"
-  echo "${description}" >>"README.md"
+echo "# ${REPO_NAME}" > "README.md"
+if [[ -n ${description} ]]; then
+  echo "" >> "README.md"
+  echo "${description}" >> "README.md"
 fi
 
 files=(
