@@ -7,6 +7,11 @@ repos:
     rev: "v2.37.0"
     hooks:
       - id: commitizen
+  - repo: https://github.com/liblaf/pre-commit-hooks
+    rev: "0.2.0"
+    hooks:
+      - id: latexindent
+      - id: shfmt
   - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
     rev: "v2.4.0"
     hooks:
