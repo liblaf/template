@@ -1,6 +1,8 @@
 ci:
   skip:
+    - latexindent-system
     - poetry-lock
+    - shfmt-system
 exclude: "^(.cz.yaml)|(poetry.lock)|(requirements.txt)$"
 repos:
   - repo: https://github.com/commitizen-tools/commitizen
@@ -10,8 +12,8 @@ repos:
   - repo: https://github.com/liblaf/pre-commit-hooks
     rev: "0.2.0"
     hooks:
-      - id: latexindent
-      - id: shfmt
+      - id: latexindent-system
+      - id: shfmt-system
   - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
     rev: "v2.4.0"
     hooks:
