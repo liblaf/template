@@ -59,6 +59,7 @@ repos:
     hooks:
       - id: poetry-check
       - id: poetry-lock
+        files: "^pyproject.toml$"
       - id: poetry-export
         files: "^pyproject.toml$"
         args:
