@@ -8,16 +8,19 @@ version = "0.0.0"
 tag_format = "$version"
 version_files = ["pyproject.toml:version"]
 
+[tool.isort]
+profile = "black"
+
 [tool.poetry]
 name = "template"
 version = "0.0.0"
 description = "Repository Template"
 authors = ["Qin Li <liblaf@outlook.com>"]
-license = "MIT"
 readme = "README.md"
+license = "MIT"
 homepage = "https://liblaf.github.io/template/"
-repository = "https://github.com/liblaf/template"
 documentation = "https://liblaf.github.io/template/"
+repository = "https://github.com/liblaf/template"
 
 [tool.poetry.dependencies]
 python = "^3.10"
