@@ -1,6 +1,15 @@
 site_name: template
 theme:
   name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.prune
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
