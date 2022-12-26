@@ -1,26 +1,23 @@
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.0"
 tag_format = "$version"
+version = "0.0.0"
 version_files = ["pyproject.toml:version"]
 
-[tool.isort]
-profile = "black"
-
 [tool.poetry]
-name = "template"
-version = "0.0.0"
-description = "Repository Template"
 authors = ["Qin Li <liblaf@outlook.com>"]
-readme = "README.md"
-license = "MIT"
-homepage = "https://liblaf.github.io/template/"
+description = "Repository Template"
 documentation = "https://liblaf.github.io/template/"
+homepage = "https://liblaf.github.io/template/"
+license = "MIT"
+name = "template"
+readme = "README.md"
 repository = "https://github.com/liblaf/template"
+version = "0.0.0"
 
 [tool.poetry.dependencies]
 python = "^3.10"

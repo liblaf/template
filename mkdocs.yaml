@@ -1,4 +1,5 @@
 site_name: template
+
 theme:
   name: material
   features:
@@ -10,15 +11,21 @@ theme:
     - navigation.indexes
     - toc.follow
     - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
         icon: material/brightness-4
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
         icon: material/brightness-7
+        name: Switch to dark mode
+
 plugins:
   - search
   - git-revision-date-localized:
@@ -27,6 +34,7 @@ plugins:
       repository: liblaf/template
       branch: main
   - git-authors
+
 repo_url: https://github.com/liblaf/template
 repo_name: liblaf/template
-edit_uri: edit/main/docs
+edit_uri: edit/main/docs/
