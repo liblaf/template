@@ -44,9 +44,10 @@ else
   workspace="$(git rev-parse --show-toplevel || pwd)"
 fi
 
-call bash "${workspace}/scripts/build.sh"
+cd "${workspace}"
+call bash "scripts/build.sh"
 mkdir --parents "${HOME}/.local/bin"
-files=("${workspace}/dist"/*)
+files=("dist"/*)
 for file in "${files[@]}"; do
   if [[ -x ${file} ]]; then
     copy "${file}" "${HOME}/.local/bin"
