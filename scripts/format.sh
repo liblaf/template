@@ -28,5 +28,5 @@ else
   workspace="$(git rev-parse --show-toplevel || pwd)"
 fi
 
-call black "${workspace}"
 call isort --profile black "${workspace}"
+call black "${workspace}"
