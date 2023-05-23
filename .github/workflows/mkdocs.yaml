@@ -24,14 +24,9 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
+          cache-dependency-path: docs/requirements.txt
       - name: Install Dependencies
         run: |-
-          pip install \
-            lxml \
-            mkdocs \
-            mkdocs-git-authors-plugin \
-            mkdocs-git-committers-plugin-2 \
-            mkdocs-git-revision-date-localized-plugin \
-            mkdocs-material
+          pip install --requirement docs/requirements.txt
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force --no-history
