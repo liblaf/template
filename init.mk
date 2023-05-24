@@ -27,7 +27,7 @@ else
 $(warning Unable to determine USER and REPO from git remote origin url: $(URL))
 endif
 
-pre-commit:
+pre-commit: $(ROOT)/.pre-commit-config.yaml
 	pre-commit install --install-hooks
 
 $(TEMPLATE):
