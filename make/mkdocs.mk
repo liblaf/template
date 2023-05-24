@@ -8,5 +8,5 @@ $(ROOT)/mkdocs.yaml: $(TEMPLATE)/mkdocs.yaml
 ifneq ($(REPO), )
 	sed --expression="s/template/$(REPO)/g" $< > $@
 else
-$(error REPO is not defined)
+	$(error REPO is not defined)
 endif
