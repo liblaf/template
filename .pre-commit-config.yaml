@@ -1,3 +1,8 @@
+ci:
+  skip:
+    - go-unit-tests
+    - go-build
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: "v4.4.0"
