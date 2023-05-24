@@ -118,7 +118,7 @@ repos:
       - id: shfmt
         files: (envrc|.sh|.zsh|.zsh-theme|zshrc)(.tmpl)?$
         types:
-          - file
+          - text
         args:
           - --write
           - --simplify
@@ -131,9 +131,13 @@ repos:
     rev: "V3.21.1"
     hooks:
       - id: latexindent
+        files: .(tex|sty|cls|bib)$
+        types:
+          - text
         args:
           - --overwriteIfDifferent
-          - --cruft="/tmp"
+          - --silent
+          - --cruft=/tmp
           - --modifylinebreaks
           - --GCString
       # - id: latexindent-conda
