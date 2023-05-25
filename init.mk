@@ -34,6 +34,6 @@ $(TEMPLATE):
 	git submodule add https://github.com/liblaf/template.git $@
 
 $(ROOT)/%: $(TEMPLATE)/%
-	install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
+	@ install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
 
 $(TEMPLATE)/%: | $(TEMPLATE)
