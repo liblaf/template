@@ -5,6 +5,8 @@ ci:
     - latexindent
     - poetry-lock
 
+exclude: .*.pdf
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: "v4.4.0"
@@ -14,7 +16,7 @@ repos:
       # - id: check-byte-order-marker # deprecated
       - id: check-builtin-literals
       - id: check-case-conflict
-      - id: check-docstring-first
+      # - id: check-docstring-first
       - id: check-executables-have-shebangs
       - id: check-json
       # - id: check-shebang-scripts-are-executable
@@ -92,7 +94,7 @@ repos:
       - id: cmake-format
       - id: cmake-lint
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: "0.23.0"
+    rev: "0.23.1"
     hooks:
       # - id: check-jsonschema
       # - id: check-metaschema
@@ -130,7 +132,7 @@ repos:
           - --space-redirects
       # - id: shfmt-docker
   - repo: https://github.com/cmhughes/latexindent.pl
-    rev: "V3.21.1"
+    rev: "V3.22"
     hooks:
       - id: latexindent
         files: .(tex|sty|cls|bib)$
