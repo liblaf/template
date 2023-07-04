@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -16,6 +16,6 @@ git init
 git remote add origin "${origin}"
 git checkout --orphan "${branch}"
 git add --all
-git commit --message "ci: deploy to ${branch} [skip ci]"
+git commit --message="ci: deploy to ${branch} [skip ci]"
 git push --force origin "${branch}"
 rm --force --recursive "${temp_dir}"

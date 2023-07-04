@@ -1,7 +1,7 @@
 ROOT != git rev-parse --show-toplevel
 
 ifeq ($(ROOT), )
-$(error fatal: not a git repository (or any of the parent directories): .git)
+  $(error Fatal: not a git repository (or any of the parent directories): .git)
 endif
 
 TEMPLATE := $(ROOT)/template
@@ -19,12 +19,19 @@ all: github pre-commit $(TARGETS)
 
 include $(TEMPLATE)/make/*.mk
 
+#####################
+# Auxiliary Targets #
+#####################
+
 github:
 ifneq ($(and $(USER), $(REPO)), )
-	# https://docs.github.com/en/rest/actions/permissions#set-default-workflow-permissions-for-a-repository
-	gh api repos/$(USER)/$(REPO)/actions/permissions/workflow --field default_workflow_permissions=read --field can_approve_pull_request_reviews=true --method PUT
+# https://docs.github.com/en/rest/actions/permissions#set-default-workflow-permissions-for-a-repository
+	gh api repos/$(USER)/$(REPO)/actions/permissions/workflow \
+	  --field default_workflow_permissions=read \
+	  --field can_approve_pull_request_reviews=true \
+	  --method=PUT
 else
-$(warning Unable to determine USER and REPO from git remote origin url: $(URL))
+  $(warning Unable to determine USER and REPO from git remote origin url: $(URL))
 endif
 
 pre-commit: $(ROOT)/.pre-commit-config.yaml
