@@ -1,4 +1,4 @@
-all:
+all: update
 
 update: update-git update-pre-commit
 
@@ -7,6 +7,7 @@ update: update-git update-pre-commit
 #####################
 
 update-git:
+	git checkout main
 	git pull
 
 update-pre-commit:
