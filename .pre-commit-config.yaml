@@ -10,7 +10,7 @@ repos:
       - id: cmake-format
       - id: cmake-lint
   - repo: https://github.com/cmhughes/latexindent.pl
-    rev: V3.22.2
+    rev: V3.23
     hooks:
       - id: latexindent
         files: .(tex|sty|cls|bib)$
@@ -63,7 +63,7 @@ repos:
       - id: name-tests-test
       - id: trailing-whitespace
   - repo: https://github.com/psf/black
-    rev: 23.9.0
+    rev: 23.9.1
     hooks:
       - id: black
       - id: black-jupyter
