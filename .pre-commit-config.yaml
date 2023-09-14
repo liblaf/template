@@ -10,7 +10,7 @@ repos:
       - id: cmake-format
       - id: cmake-lint
   - repo: https://github.com/cmhughes/latexindent.pl
-    rev: V3.23
+    rev: V3.23.1
     hooks:
       - id: latexindent
         files: .(tex|sty|cls|bib)$
