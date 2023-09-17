@@ -2,6 +2,14 @@ ci:
   skip:
     - latexindent
     - poetry-lock
+    - go-build-mod
+    - go-build-repo-mod
+    - go-mod-tidy
+    - go-mod-tidy-repo
+    - go-test-mod
+    - go-test-repo-mod
+    - go-vet-mod
+    - go-vet-repo-mod
 
 repos:
   - repo: https://github.com/cheshirekow/cmake-format-precommit
