@@ -23,7 +23,7 @@ repos:
           - --modifylinebreaks
           - --GCString
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.8.2
+    rev: 3.9.0
     hooks:
       - id: commitizen
   - repo: https://github.com/pre-commit/mirrors-clang-format
