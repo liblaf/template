@@ -1,21 +1,23 @@
-ROOT != git rev-parse --show-toplevel
+TOP_LEVEL != git rev-parse --show-toplevel
 
-ifeq ($(ROOT), )
-  $(error Fatal: not a git repository (or any of the parent directories): .git)
+ifeq ($(TOP_LEVEL),)
+$(error Fatal: not a git repository (or any of the parent directories): .git)
 endif
 
-TEMPLATE := $(ROOT)/template
+TEMPLATE := $(TOP_LEVEL)/template
 
-TARGETS += $(ROOT)/.github/dependabot.yaml
-TARGETS += $(ROOT)/.github/sync-repo-settings.yaml
-TARGETS += $(ROOT)/.github/workflows/license.yaml
-TARGETS += $(ROOT)/.pre-commit-config.yaml
+TARGETS += $(TOP_LEVEL)/.github/dependabot.yaml
+TARGETS += $(TOP_LEVEL)/.github/sync-repo-settings.yaml
+TARGETS += $(TOP_LEVEL)/.github/workflows/license.yaml
+TARGETS += $(TOP_LEVEL)/.pre-commit-config.yaml
 
 URL  != git config --get remote.origin.url
 USER != echo $(URL) | sed --regexp-extended --expression='s/.*github.com\/(.+)\/(.+)\.git/\1/'
 REPO != echo $(URL) | sed --regexp-extended --expression='s/.*github.com\/(.+)\/(.+)\.git/\2/'
 
-all: github pre-commit $(TARGETS)
+all: common
+
+common: github pre-commit $(TARGETS)
 
 include $(TEMPLATE)/make/*.mk
 
@@ -31,16 +33,16 @@ ifneq ($(and $(USER), $(REPO)), )
 	  --field can_approve_pull_request_reviews=true \
 	  --method=PUT
 else
-  $(warning Unable to determine USER and REPO from git remote origin url: $(URL))
+	$(warning Unable to determine USER and REPO from git remote origin url: $(URL))
 endif
 
-pre-commit: $(ROOT)/.pre-commit-config.yaml
+pre-commit: $(TOP_LEVEL)/.pre-commit-config.yaml
 	pre-commit install --install-hooks
 
 $(TEMPLATE):
 	git submodule add https://github.com/liblaf/template.git $@
 
-$(ROOT)/%: $(TEMPLATE)/%
+$(TOP_LEVEL)/%: $(TEMPLATE)/%
 	@ install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
 
 $(TEMPLATE)/%: | $(TEMPLATE)
