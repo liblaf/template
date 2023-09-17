@@ -1,6 +1,6 @@
-MKDOCS_LIST += $(ROOT)/.github/workflows/mkdocs.yaml
-MKDOCS_LIST += $(ROOT)/docs/requirements.txt
-MKDOCS_LIST += $(ROOT)/mkdocs.yaml
+MKDOCS_LIST += $(TOP_LEVEL)/.github/workflows/mkdocs.yaml
+MKDOCS_LIST += $(TOP_LEVEL)/docs/requirements.txt
+MKDOCS_LIST += $(TOP_LEVEL)/mkdocs.yaml
 
 mkdocs: common $(MKDOCS_LIST)
 
@@ -8,7 +8,7 @@ mkdocs: common $(MKDOCS_LIST)
 # Auxiliary Targets #
 #####################
 
-$(ROOT)/mkdocs.yaml: $(TEMPLATE)/mkdocs.yaml
+$(TOP_LEVEL)/mkdocs.yaml: $(TEMPLATE)/mkdocs.yaml
 ifneq ($(REPO), )
 	sed --expression="s/template/$(REPO)/g" $< > $@
 else
