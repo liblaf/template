@@ -1,4 +1,4 @@
-name: Update LICENSE Year
+name: LICENSE
 
 on:
   schedule:
