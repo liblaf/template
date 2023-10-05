@@ -69,7 +69,7 @@ repos:
         args:
           - --profile=black
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.26.3
+    rev: 0.27.0
     hooks:
       - id: check-azure-pipelines
       - id: check-bamboo-spec
