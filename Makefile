@@ -11,4 +11,4 @@ update-git:
 	git pull
 
 update-pre-commit:
-	pre-commit autoupdate --jobs=$(shell nproc)
+	pre-commit autoupdate --jobs=8

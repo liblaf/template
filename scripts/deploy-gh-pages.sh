@@ -3,7 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-local_dir=$(realpath ${1:-$PWD})
+local_dir=${1:-$PWD}
 branch=${2:-"gh-pages"}
 origin=$(git remote get-url origin)
 
@@ -17,5 +17,5 @@ git init
 git remote add origin $origin
 git checkout --orphan $branch
 git add --all
-git commit --message="ci: deploy to $branch [skip ci]"
+git commit --message="ci: deploy to $branch"
 git push --force origin $branch
