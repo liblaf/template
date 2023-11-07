@@ -30,16 +30,16 @@ ifeq ($(and $(USER),$(REPO)),)
 	$(warning Unable to determine USER and REPO from git remote origin url: $(URL))
 else
 # https://docs.github.com/en/rest/repos/repos
-	GH_PAGER="" gh api repos/$(USER)/$(REPO) \
+	- GH_PAGER="" gh api repos/$(USER)/$(REPO) \
 		--field="allow_merge_commit=false" \
 		--field="delete_branch_on_merge=true" \
 		--method=PATCH
 # https://docs.github.com/en/rest/actions/permissions#set-default-workflow-permissions-for-a-repository
-	GH_PAGER="" gh api repos/$(USER)/$(REPO)/actions/permissions/workflow \
+	- GH_PAGER="" gh api repos/$(USER)/$(REPO)/actions/permissions/workflow \
 		--field="default_workflow_permissions=read" \
 		--field="can_approve_pull_request_reviews=true" \
 		--method=PUT
 endif
 
 pre-commit: $(TARGET_DIR)/.pre-commit-config.yaml
-	pre-commit install --install-hooks --hook-type="commit-msg" --hook-type="pre-commit"
+	- pre-commit install --install-hooks --hook-type="commit-msg" --hook-type="pre-commit"
