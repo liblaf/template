@@ -1,0 +1,15 @@
+name: Template Repository
+
+author: liblaf
+
+description: Update current repository with template repository
+
+runs:
+  using: composite
+  steps:
+    - run: make --directory="${{ github.workspace }}" --makefile="${{ github.action_path }}/init.mk"
+      shell: bash
+
+branding:
+  color: blue
+  icon: download-cloud

@@ -2,9 +2,9 @@ all: update
 
 update: update-git update-pre-commit
 
-#####################
-# Auxiliary Targets #
-#####################
+###############
+# Auxiliaries #
+###############
 
 update-git:
 	git checkout main

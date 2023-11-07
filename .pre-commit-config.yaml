@@ -3,7 +3,8 @@ ci:
     ci(pre-commit): auto fixes from pre-commit.com hooks
 
     for more information, see https://pre-commit.ci
-  autoupdate_commit_msg: "ci(pre-commit): pre-commit autoupdate"
+  autoupdate_commit_msg: |-
+    ci(pre-commit): pre-commit autoupdate
   skip:
     - cargo-check
     - clippy
