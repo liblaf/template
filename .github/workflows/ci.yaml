@@ -1,0 +1,21 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - id: release
+        name: Create GitHub Release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: simple
