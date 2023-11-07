@@ -1,4 +1,4 @@
-name: Template Repository
+name: Sync with Template Repository
 
 author: liblaf
 
@@ -7,7 +7,7 @@ description: Update current repository with template repository
 runs:
   using: composite
   steps:
-    - run: make --directory="${{ github.workspace }}" --makefile="${{ github.action_path }}/init.mk"
+    - run: make --always-make --directory="${{ github.workspace }}" --makefile="${{ github.action_path }}/init.mk"
       shell: bash
 
 branding:

@@ -1,17 +1,16 @@
+SOURCE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 TARGET_DIR != git rev-parse --show-toplevel
 
 ifeq ($(TARGET_DIR),)
 $(error Fatal: not a git repository (or any of the parent directories): .git)
 endif
 
-SOURCE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
-
 TARGET_LIST += $(TARGET_DIR)/.github/dependabot.yaml
 TARGET_LIST += $(TARGET_DIR)/.github/workflows/template.yaml
 TARGET_LIST += $(TARGET_DIR)/.pre-commit-config.yaml
 
 all: common
-
+$(info $(TARGET_LIST))
 common: github pre-commit $(TARGET_LIST)
 
 ###############
@@ -23,7 +22,7 @@ USER != echo $(URL) | sed --regexp-extended --expression='s|.*github.com/(.+)/(.
 REPO != echo $(URL) | sed --regexp-extended --expression='s|.*github.com/(.+)/(.+).git|\2|'
 
 $(TARGET_DIR)/%: $(SOURCE_DIR)/%
-	@ install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
+	@- install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
 
 github:
 ifeq ($(and $(USER),$(REPO)),)
