@@ -9,6 +9,9 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: ${{ github.workflow }}
+
 jobs:
   release:
     name: Create GitHub Release
