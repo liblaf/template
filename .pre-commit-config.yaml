@@ -44,7 +44,7 @@ repos:
           - c
           - c++
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+    rev: v3.1.0
     hooks:
       - id: prettier
         stages:
@@ -75,7 +75,7 @@ repos:
       - id: name-tests-test
       - id: trailing-whitespace
   - repo: https://github.com/psf/black
-    rev: 23.10.1
+    rev: 23.11.0
     hooks:
       - id: black
       - id: black-jupyter
@@ -110,7 +110,7 @@ repos:
       - id: poetry-lock
         files: pyproject.toml
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.7.0-1
+    rev: v3.7.0-2
     hooks:
       - id: shfmt
         files: (\.sh|\.zsh|\.zsh-theme|envrc|zshrc)(\.tmpl)?$
