@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.0](https://github.com/liblaf/template/compare/v0.0.0...v0.1.0) (2023-11-28)
+
+### Features
+
+- add GitHub workflows for auto-merge, check, and template sync ([c110f37](https://github.com/liblaf/template/commit/c110f37fb6e52656e885ef5dd28184691b06ca98))
+- **pre-commit-config:** add shfmt-src hook ([ea0767f](https://github.com/liblaf/template/commit/ea0767f88dfbed4a1f69ffbd86dcf1a2afd068fd))
+
+### Bug Fixes
+
+- **workflows:** enable auto-merge with squash option ([55c9566](https://github.com/liblaf/template/commit/55c9566a4c7b1fb6eb5c605543435eeaf63be16d))
+
 ## 0.0.0 (2023-11-07)
 
 ### Features
