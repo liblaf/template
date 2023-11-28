@@ -1,14 +1,32 @@
-name: Sync with Template Repository
+name: Sync with template repository
 
 author: liblaf
 
 description: Update current repository with template repository
 
+inputs:
+  push:
+    description: Push changes to current repository
+    required: false
+    default: "false"
+
 runs:
   using: composite
   steps:
-    - run: make --always-make --directory="${{ github.workspace }}" --makefile="${{ github.action_path }}/init.mk"
+    - run: make --always-make --file="${{ github.action_path }}/init.mk"
       shell: bash
+      name: Sync with template repository
+    - run: |-
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add --all
+        if ! git diff --cached --quiet; then
+          git commit --message="ci: sync with template repository"
+          git push
+        fi
+      shell: bash
+      if: inputs.push == 'true'
+      name: Push changes
 
 branding:
   color: blue

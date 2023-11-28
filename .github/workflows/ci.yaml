@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI
 
 on:
   push:
@@ -14,11 +14,10 @@ concurrency:
 
 jobs:
   release:
-    name: Create GitHub Release
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - id: release
-        name: Create GitHub Release
+      - name: Release
         uses: google-github-actions/release-please-action@v3
         with:
           release-type: simple
