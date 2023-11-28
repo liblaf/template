@@ -6,8 +6,8 @@ $(error fatal: not a git repository (or any of the parent directories): .git)
 endif
 
 TARGET_LIST += $(TARGET_DIR)/.github/dependabot.yaml
-TARGET_LIST += $(TARGET_DIR)/.github/workflows/auto-merge.yaml
 TARGET_LIST += $(TARGET_DIR)/.github/workflows/check.yaml
+TARGET_LIST += $(TARGET_DIR)/.github/workflows/merge.yaml
 TARGET_LIST += $(TARGET_DIR)/.github/workflows/template.yaml
 TARGET_LIST += $(TARGET_DIR)/.pre-commit-config.yaml
 
