@@ -23,7 +23,7 @@ REPO != gh repo view --json=name --template="{{ .name }}"
 USER != gh repo view --json=owner --template="{{ .owner.login }}"
 
 $(TARGET_DIR)/%: $(SOURCE_DIR)/%
-	@ install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
+	@- install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
 
 github:
 ifeq ($(and $(USER),$(REPO)), )

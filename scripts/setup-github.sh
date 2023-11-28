@@ -32,3 +32,4 @@ gh api repos/$user/$repo/branches/main/protection \
   "allow_force_pushes": true
 }
 EOF
+gh secret set GH_PAT --body="$(bw get notes GH_PAT)"
