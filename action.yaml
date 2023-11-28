@@ -9,6 +9,10 @@ inputs:
     description: Push changes to current repository
     required: false
     default: "false"
+  token:
+    description: GitHub token
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: composite
@@ -16,6 +20,8 @@ runs:
     - run: make --always-make --file="${{ github.action_path }}/init.mk"
       shell: bash
       name: Sync with template repository
+      env:
+        GH_TOKEN: ${{ inputs.token }}
     - run: |-
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
