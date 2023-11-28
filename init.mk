@@ -23,13 +23,13 @@ REPO != gh repo view --json=name --template="{{ .name }}"
 USER != gh repo view --json=owner --template="{{ .owner.login }}"
 
 $(TARGET_DIR)/%: $(SOURCE_DIR)/%
-	@- install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
+	@ install -D --mode="u=rw,go=r" --no-target-directory --verbose $< $@
 
 github:
 ifeq ($(and $(USER),$(REPO)), )
 	$(error fatal: not a github repository (or any of the parent directories))
 else
-	bash $(SOURCE_DIR)/scripts/setup-github.sh $(USER) $(REPO)
+	- bash $(SOURCE_DIR)/scripts/setup-github.sh $(USER) $(REPO)
 endif
 
 pre-commit: $(TARGET_DIR)/.pre-commit-config.yaml

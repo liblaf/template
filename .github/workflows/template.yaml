@@ -1,4 +1,4 @@
-name: Sync with Template Repository
+name: Template Repository
 
 on:
   schedule:
