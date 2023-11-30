@@ -6,6 +6,8 @@ ci:
   autoupdate_commit_msg: |-
     ci(pre-commit): pre-commit autoupdate
   skip:
+    - cargo-check
+    - cargo-clippy
     - poetry-lock
 
 repos:
