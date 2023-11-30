@@ -20,7 +20,7 @@ gh api repos/$user/$repo/actions/permissions/workflow \
 # https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
 gh api repos/$user/$repo/branches/main/protection \
   --input=- \
-  --method=PUT <<-EOF
+  --method=PUT <<- EOF
 {
   "required_status_checks": {
     "strict": false,
