@@ -11,6 +11,8 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
         "--words-only",
         "--unique",
         "--exclude=.git",
+        "--exclude=*-lock.*",
+        "--exclude=*.lock",
         "--no-exit-code",
         "--quiet",
         "--dot",
@@ -62,9 +64,10 @@ for word, dicts in words_to_dictionaries.items():
 yaml.safe_dump(
     {
         "words": sorted(words),
+        "ignorePaths": ["*-lock.*", "*.lock"],
         "dictionaries": sorted(dictionaries),
         "allowCompoundWords": True,
     },
-    stream=sys.stdout,
+    sys.stdout,
     sort_keys=False,
 )
