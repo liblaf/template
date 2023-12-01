@@ -1,0 +1,13 @@
+words:
+  - choco
+  - gomod
+  - liblaf
+  - mkdocs
+dictionaries:
+  - bash
+  - cpp
+  - cpp-refined
+  - makefile
+  - npm
+  - python
+allowCompoundWords: true
