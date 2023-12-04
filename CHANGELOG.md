@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.0.0](https://github.com/liblaf/template/compare/v0.1.0...v1.0.0) (2023-12-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* The script `setup-github.sh` has been renamed to `gh-init.sh`. If you have any existing references or dependencies on the old script, you will need to update them accordingly.
+
+### Features
+
+* **action:** add support for GitHub token ([7037c7e](https://github.com/liblaf/template/commit/7037c7e40b4f0fd6dc804f29e517a93c677c9e0a))
+* add all-in-one install action ([46a267c](https://github.com/liblaf/template/commit/46a267cb4baa9ee9e06848c0c55fca1d95aa0d89))
+* add init.yaml and sync-all.sh scripts ([ff23707](https://github.com/liblaf/template/commit/ff2370780cec5f490307618956ba5a13ddda15ea))
+* add init.yaml file ([2be81aa](https://github.com/liblaf/template/commit/2be81aa5e9ea61b3fa0f49c8065926cda24c9ccc))
+* add script to clone all GitHub repositories ([3cb76d2](https://github.com/liblaf/template/commit/3cb76d2c90e9c7ce06b2bb62c2684d7218543f3f))
+* **ci:** add cspell and latexindent to skip list ([eecec63](https://github.com/liblaf/template/commit/eecec63413c15e0df207a154d446d01b35aa054f))
+* **pre-commit:** add skip for cargo-check and cargo-clippy ([42dd832](https://github.com/liblaf/template/commit/42dd83260009cec92d6ca98b636502fa4166a0e9))
+* update init.yaml to remove unnecessary tasks ([f7789fb](https://github.com/liblaf/template/commit/f7789fb0bb034f483dfda8dc2114d8dc2f64ed4b))
+* update pre-commit hooks and configurations ([7d78546](https://github.com/liblaf/template/commit/7d785462fb0408378ad4be2d027ecac6682fef0f))
+* **workflows:** add write permission for actions and contents ([35ff4e9](https://github.com/liblaf/template/commit/35ff4e9d247ff252564092308d42cddb6a31989d))
+* **workflows:** add write permission for contents ([1148e31](https://github.com/liblaf/template/commit/1148e316c316f173c53bd899b12d6035cc51bf15))
+
+
+### Bug Fixes
+
+* add ignorePaths for lock files ([fe1b7fd](https://github.com/liblaf/template/commit/fe1b7fd1f2ba0804687e7495133e17cf03bf6b94))
+* fix indentation issue in check.yaml ([de68dcf](https://github.com/liblaf/template/commit/de68dcfe88704e52be6d6b115bdbb9ebf86d4d6e))
+* **workflows:** fix condition for merge job ([a21b496](https://github.com/liblaf/template/commit/a21b4964ecc756d21726a186616586e98176977e))
+* **workflows:** remove unnecessary permission and add token for checkout ([30edc36](https://github.com/liblaf/template/commit/30edc36f1e27743a33c152b490a0a03fc3abac46))
+
 ## [0.1.0](https://github.com/liblaf/template/compare/v0.0.0...v0.1.0) (2023-11-28)
 
 ### Features
