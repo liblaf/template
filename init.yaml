@@ -4,9 +4,13 @@ vars:
   GIT_ROOT:
     sh: git -C "{{.USER_WORKING_DIR}}" rev-parse --show-toplevel
   USER:
-    sh: git -C "{{.USER_WORKING_DIR}}" config remote.origin.url | sed --regexp-extended "s|.*github.com/(.+)/(.+).git|\1|"
+    sh: git -C "{{.USER_WORKING_DIR}}" remote get-url origin |
+      sed 's|.*github.com/||;s|\.git$||' |
+      cut --delimiter="/" --fields=1
   REPO:
-    sh: git -C "{{.USER_WORKING_DIR}}" config remote.origin.url | sed --regexp-extended "s|.*github.com/(.+)/(.+).git|\2|"
+    sh: git -C "{{.USER_WORKING_DIR}}" remote get-url origin |
+      sed 's|.*github.com/||;s|\.git$||' |
+      cut --delimiter="/" --fields=2
 
 tasks:
   default:
