@@ -7,20 +7,20 @@ user=$1
 repo=$2
 
 # https://docs.github.com/en/rest/repos/repos#update-a-repository
-gh api repos/$user/$repo \
+gh api "repos/$user/$repo" \
   --field="allow_merge_commit=false" \
   --field="allow_auto_merge=true" \
   --field="delete_branch_on_merge=true" \
   --method=PATCH \
   --silent
 # https://docs.github.com/en/rest/actions/permissions#set-default-workflow-permissions-for-a-repository
-gh api repos/$user/$repo/actions/permissions/workflow \
+gh api "repos/$user/$repo/actions/permissions/workflow" \
   --field="default_workflow_permissions=read" \
   --field="can_approve_pull_request_reviews=true" \
   --method=PUT \
   --silent
 # https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
-gh api repos/$user/$repo/branches/main/protection \
+gh api "repos/$user/$repo/branches/main/protection" \
   --input=- \
   --method=PUT \
   --silent <<- EOF

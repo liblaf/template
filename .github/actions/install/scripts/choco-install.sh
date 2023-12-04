@@ -10,7 +10,7 @@ function retry() {
     local status_=$?
     if ((attempts < max_attempts)); then
       attempts=$((attempts + 1))
-      echo "Retrying $@ ... Attempt $attempts / $max_attempts"
+      echo "Retrying $* ... Attempt $attempts / $max_attempts"
       sleep 1
     else
       echo "Exited with status $status_"

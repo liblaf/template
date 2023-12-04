@@ -23,15 +23,15 @@ runs:
   steps:
     - run: bash "${{ github.action_path }}/scripts/apt-install.sh" ${{ inputs.apt }}
       shell: bash
-      if: runner.os == 'Linux' && inputs.apt != ''
+      if: runner.os == 'Linux' && inputs.apt
       name: APT
     - run: bash "${{ github.action_path }}/scripts/brew-install.sh" ${{ inputs.brew }}
       shell: bash
-      if: runner.os == 'macOS' && inputs.brew != ''
+      if: runner.os == 'macOS' && inputs.brew
       name: Homebrew
     - run: bash "${{ github.action_path }}/scripts/choco-install.sh" ${{ inputs.choco }}
       shell: bash
-      if: runner.os == 'Windows' && inputs.choco != ''
+      if: runner.os == 'Windows' && inputs.choco
       name: Chocolatey
 
 branding:

@@ -1,0 +1,38 @@
+version: "3"
+
+vars:
+  GIT_ROOT:
+    sh: git -C "{{.USER_WORKING_DIR}}" rev-parse --show-toplevel
+  USER:
+    sh: git -C "{{.USER_WORKING_DIR}}" config remote.origin.url | sed --regexp-extended "s|.*github.com/(.+)/(.+).git|\1|"
+  REPO:
+    sh: git -C "{{.USER_WORKING_DIR}}" config remote.origin.url | sed --regexp-extended "s|.*github.com/(.+)/(.+).git|\2|"
+
+tasks:
+  default:
+    deps:
+      - common
+      - github
+      - pre-commit
+
+  common:
+    cmds:
+      - for:
+          - .github/dependabot.yaml
+          - .github/workflows/check.yaml
+          - .github/workflows/merge.yaml
+          - .github/workflows/template.yaml
+          - .pre-commit-config.yaml
+        cmd: install -D --mode="u=rw,go=r" --no-target-directory --verbose
+          "{{.TASKFILE_DIR}}/{{.ITEM}}" "{{.GIT_ROOT}}/{{.ITEM}}"
+    run: once
+
+  github:
+    cmd: bash "{{.TASKFILE_DIR}}/scripts/gh-init.sh" "{{.USER}}" "{{.REPO}}"
+    ignore_error: true
+
+  pre-commit:
+    deps:
+      - common
+    cmd: pre-commit install --install-hooks --hook-type="commit-msg" --hook-type="pre-commit"
+    ignore_error: true

@@ -10,7 +10,7 @@ function retry() {
     local status_=$?
     if ((attempts < max_attempts)); then
       attempts=$((attempts + 1))
-      echo "Retrying $@ ... Attempt $attempts / $max_attempts"
+      echo "Retrying $* ... Attempt $attempts / $max_attempts"
       sleep 1
     else
       echo "Exited with status $status_"
@@ -21,10 +21,10 @@ function retry() {
 
 retry brew update
 for pkg in "$@"; do
-  retry brew install $pkg
+  retry brew install "$pkg"
   case $pkg in
     coreutils | make | gnu-*)
-      echo "$(brew --prefix)/opt/$pkg/libexec/gnubin" >> $GITHUB_PATH
+      echo "$(brew --prefix)/opt/$pkg/libexec/gnubin" >> "$GITHUB_PATH"
       ;;
   esac
 done
