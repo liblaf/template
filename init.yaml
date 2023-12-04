@@ -23,7 +23,6 @@ tasks:
     cmds:
       - for:
           - .github/dependabot.yaml
-          - .github/workflows/check.yaml
           - .github/workflows/merge.yaml
           - .github/workflows/template.yaml
           - .pre-commit-config.yaml
