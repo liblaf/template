@@ -13,12 +13,14 @@ gh api "repos/$user/$repo" \
   --field="delete_branch_on_merge=true" \
   --method=PATCH \
   --silent
+
 # https://docs.github.com/en/rest/actions/permissions#set-default-workflow-permissions-for-a-repository
 gh api "repos/$user/$repo/actions/permissions/workflow" \
   --field="default_workflow_permissions=read" \
   --field="can_approve_pull_request_reviews=true" \
   --method=PUT \
   --silent
+
 # https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
 gh api "repos/$user/$repo/branches/main/protection" \
   --input=- \
@@ -35,4 +37,9 @@ gh api "repos/$user/$repo/branches/main/protection" \
   "allow_force_pushes": true
 }
 EOF
-gh secret set GH_PAT --body="$(bw get notes GH_PAT)"
+
+if [[ -n ${CI-} ]]; then
+  gh secret set GH_TOKEN --body="$GH_TOKEN"
+else
+  gh secret set GH_TOKEN --body="$(bw get notes GH_TOKEN)"
+fi

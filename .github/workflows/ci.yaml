@@ -13,11 +13,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  sync:
+    name: Sync All Repositories
     runs-on: ubuntu-latest
     steps:
-      - name: Release
-        uses: google-github-actions/release-please-action@v4
-        with:
-          release-type: simple
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Sync all repositories
+        run: bash scripts/sync-all.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

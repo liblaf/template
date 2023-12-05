@@ -3,6 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+source=$(git rev-parse --show-toplevel)
 prefix=${1:-$HOME/github}
 
 mapfile -t repos < <(
@@ -29,7 +30,10 @@ for repo in "${repos[@]}"; do
     *)
       visibility=$(gh repo view "$repo" --jq=".visibility" --json="visibility")
       case "$visibility" in
-        PUBLIC) run taskfile --file="$PWD/init.mk" || continue ;;
+        PUBLIC)
+          cd "$target"
+          task --taskfile="$source/init.yaml" || continue
+          ;;
       esac
       ;;
   esac
