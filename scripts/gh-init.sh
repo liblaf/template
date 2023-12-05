@@ -39,7 +39,7 @@ gh api "repos/$user/$repo/branches/main/protection" \
 EOF
 
 if [[ -n ${CI-} ]]; then
-  gh secret set GH_TOKEN --body="$GH_TOKEN"
+  gh secret --repo="$user/$repo" set GH_TOKEN --body="$GH_TOKEN"
 else
-  gh secret set GH_TOKEN --body="$(bw get notes GH_TOKEN)"
+  gh secret --repo="$user/$repo" set GH_TOKEN --body="$(bw get notes GH_TOKEN)"
 fi

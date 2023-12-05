@@ -1,4 +1,4 @@
-name: Sync with template repository
+name: Sync with Template Repository
 
 author: liblaf
 
@@ -21,7 +21,7 @@ runs:
       uses: arduino/setup-task@v1
     - run: task --taskfile="${{ github.action_path }}/init.yaml"
       shell: bash
-      name: Sync with template repository
+      name: Sync with Template Repository
       env:
         GH_TOKEN: ${{ inputs.token }}
     - run: |-
@@ -34,7 +34,7 @@ runs:
         fi
       shell: bash
       if: inputs.push == 'true'
-      name: Push changes
+      name: Push Changes
 
 branding:
   color: blue
