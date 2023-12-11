@@ -19,6 +19,8 @@ runs:
   steps:
     - name: Install Task
       uses: arduino/setup-task@v1
+      with:
+        repo-token: ${{ github.token }}
     - run: task --taskfile="${{ github.action_path }}/init.yaml"
       shell: bash
       name: Sync with Template Repository

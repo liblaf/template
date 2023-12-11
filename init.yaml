@@ -24,7 +24,6 @@ tasks:
       - cmd: rm --force --verbose "{{.GIT_ROOT}}/{{.ITEM}}"
         for:
           - .github/sync-repo-settings.yaml
-          - .github/workflows/check.yaml
           - .github/workflows/license.yaml
         silent: true
       - cmd: install -D --mode="u=rw,go=r" --no-target-directory --verbose
