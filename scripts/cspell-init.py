@@ -64,7 +64,7 @@ for word, dicts in words_to_dictionaries.items():
 yaml.safe_dump(
     {
         "words": sorted(words),
-        "ignorePaths": ["*-lock.*", "*.lock"],
+        "ignorePaths": ["*-lock.*", "*.lock", "cspell.config.yaml"],
         "dictionaries": sorted(dictionaries),
         "allowCompoundWords": True,
     },
