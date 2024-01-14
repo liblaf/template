@@ -1,8 +1,7 @@
+import json
 import subprocess
 import sys
-from collections.abc import MutableMapping, MutableSequence, MutableSet, Sequence
-
-import yaml
+from collections.abc import MutableMapping, MutableSequence, MutableSet
 
 completed_process: subprocess.CompletedProcess = subprocess.run(
     [
@@ -26,7 +25,7 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
     text=True,
 )
 stdout: str = completed_process.stdout
-words: Sequence[str] = list(set(word.lower() for word in stdout.splitlines()))
+words: MutableSequence[str] = list(set(word.lower() for word in stdout.splitlines()))
 completed_process: subprocess.CompletedProcess = subprocess.run(
     [
         "cspell",
@@ -61,13 +60,22 @@ for word, dicts in words_to_dictionaries.items():
             dictionaries.add(dicts[0])
     else:
         words.append(word)
-yaml.safe_dump(
+config: str = json.dumps(
     {
         "words": sorted(words),
-        "ignorePaths": ["*-lock.*", "*.lock", "cspell.config.yaml"],
+        "ignorePaths": ["*-lock.*", "*.lock", "cspell.json"],
         "dictionaries": sorted(dictionaries),
         "allowCompoundWords": True,
     },
-    sys.stdout,
     sort_keys=False,
 )
+completed_process: subprocess.CompletedProcess = subprocess.run(
+    ["prettier", "--parser=json"],
+    stdout=subprocess.PIPE,
+    stderr=sys.stderr,
+    check=True,
+    input=config,
+    text=True,
+)
+config: str = completed_process.stdout
+print(config, end="")
