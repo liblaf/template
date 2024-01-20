@@ -1,3 +1,4 @@
+import collections
 import json
 import re
 import subprocess
@@ -44,9 +45,9 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
 )
 stdout: str = completed_process.stdout
 PATTERN: re.Pattern = re.compile(r"(?P<word>.*): (?P<not>Not )?Found")
-words_to_dictionaries: MutableMapping[str, MutableSequence[str]] = {
-    word: [] for word in words
-}
+words_to_dictionaries: MutableMapping[
+    str, MutableSequence[str]
+] = collections.defaultdict(list)
 for line in stdout.splitlines():
     if not line:
         pass
@@ -58,18 +59,15 @@ for line in stdout.splitlines():
         word: str = line.split()[0].replace("+", "")
         dictionary: str = line.split()[2]
         words_to_dictionaries[word].append(dictionary)
-words_not_found: MutableSequence[str] = []
 dictionaries: MutableSet[str] = set()
 for word, dicts in words_to_dictionaries.items():
     if word not in words:
         continue
-    if dicts:
-        if any(dictionary.endswith("*") for dictionary in dicts):
-            pass
-        else:
-            dictionaries.add(dicts[0])
+    if any(dictionary.endswith("*") for dictionary in dicts):
+        pass
     else:
-        words_not_found.append(word)
+        dictionaries.add(dicts[0])
+words_not_found: Set[str] = words - words_to_dictionaries.keys()
 config: str = json.dumps(
     {
         "words": sorted(words_not_found),
@@ -77,6 +75,7 @@ config: str = json.dumps(
         "dictionaries": sorted(dictionaries),
         "allowCompoundWords": True,
     },
+    ensure_ascii=False,
     sort_keys=False,
 )
 completed_process: subprocess.CompletedProcess = subprocess.run(
