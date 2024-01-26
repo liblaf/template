@@ -10,11 +10,12 @@ fi
 if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
   tmpfile=$(mktemp)
   trap 'rm --verbose $tmpfile' EXIT
-  wget --output-document="$tmpfile" "https://github.com/${INPUT_REPO}/releases/download/${INPUT_TAG}/sha256sums.txt" || true
-  # shellcheck disable=SC2086
-  sha256sum $INPUT_FILES > sha256sums.txt
-  if ! diff "sha256sums.old.txt" "sha256sums.txt" > /dev/null; then
-    exit 0
+  if wget --output-document="$tmpfile" "https://github.com/${INPUT_REPO}/releases/download/${INPUT_TAG}/sha256sums.txt"; then
+    # shellcheck disable=SC2086
+    sha256sum $INPUT_FILES > sha256sums.txt
+    if ! diff "$tmpfile" "sha256sums.txt" > /dev/null; then
+      exit 0
+    fi
   fi
 fi
 
