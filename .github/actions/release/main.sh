@@ -9,7 +9,7 @@ if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
   wget --output-document="$tmpfile" "https://github.com/${INPUT_REPO}/releases/download/${INPUT_TAG}/sha256sums.txt" || true
   # shellcheck disable=SC2086
   sha256sum $INPUT_FILES > sha256sums.txt
-  sed --regexp-extended --expression="s|([[:xdigit:]]+)  .*/(.*)|\1  \2|" --in-place "sha256sums.txt"
+  sed --regexp-extended --expression="s|([[:xdigit:]]+)([[:blank:]])+.*/([^/]+)|\1\2\3|" --in-place "sha256sums.txt"
   if diff "$tmpfile" "sha256sums.txt" > /dev/null; then
     echo "created=false" >> "$GITHUB_OUTPUT"
     exit 0
