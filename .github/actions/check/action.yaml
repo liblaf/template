@@ -1,0 +1,25 @@
+name: Check CI Status
+
+author: liblaf
+
+description: Check CI status
+
+inputs:
+  token:
+    description: GitHub token
+    required: false
+    default: ${{ github.token }}
+  pull-request:
+    description: Pull Request URL
+    required: false
+    default: ${{ github.event.pull_request.html_url }}
+
+runs:
+  using: composite
+  steps:
+    - run: bash "${{ github.action_path }}/main.sh"
+      shell: bash
+      name: Check CI Status
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        INPUT_PULL_REQUEST: ${{ inputs.pull-request }}
