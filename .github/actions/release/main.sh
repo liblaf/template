@@ -3,10 +3,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-if [[ -n $INPUT_TAG ]]; then
-  gh release --repo="$INPUT_REPO" delete "$INPUT_TAG" --cleanup-tag || true
-fi
-
 if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
   tmpfile=$(mktemp)
   trap 'rm --verbose $tmpfile' EXIT
@@ -18,6 +14,10 @@ if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
     echo "created=false" >> "$GITHUB_OUTPUT"
     exit 0
   fi
+fi
+
+if [[ -n $INPUT_TAG ]]; then
+  gh release --repo="$INPUT_REPO" delete "$INPUT_TAG" --cleanup-tag || true
 fi
 
 args=(gh release)
@@ -47,5 +47,6 @@ if [[ -n $INPUT_TITLE ]]; then
 elif [[ -n $INPUT_TAG ]]; then
   args+=(--title "$INPUT_TAG")
 fi
+echo "${args[@]}"
 "${args[@]}"
 echo "created=true" >> "$GITHUB_OUTPUT"
