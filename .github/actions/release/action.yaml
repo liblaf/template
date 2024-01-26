@@ -1,0 +1,43 @@
+name: Create GitHub Release
+
+author: liblaf
+
+description: Create GitHub release
+
+inputs:
+  token:
+    description: GitHub token
+    required: false
+    default: ${{ github.token }}
+  repo:
+    description: Select another repository using the [HOST/]OWNER/REPO format
+    required: false
+    default: ${{ github.repository }}
+  tag:
+    description: Tag name
+    required: false
+  files:
+    description: Path to the assets
+    required: false
+  generate_notes:
+    description: Automatically generate title and notes for the release
+    required: false
+    default: "true"
+  latest:
+    description: 'Mark this release as "Latest" (default: automatic based on date and version)'
+    required: false
+  prerelease:
+    description: Mark the release as a prerelease
+    required: false
+  title:
+    description: Release title
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - run: bash "${{ github.action_path }}/main.sh"
+      shell: bash
+      name: Create GitHub Release
+      env:
+        GH_TOKEN: ${{ inputs.token }}
