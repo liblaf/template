@@ -30,7 +30,7 @@ if [[ -n $INPUT_TAG ]]; then
 fi
 # shellcheck disable=SC2206
 args+=($INPUT_FILES)
-if [[ -f "sha256sums.txt" ]]; then
+if [[ -f "sha256sums.txt" && ! " ${args[*]} " =~ \ sha256sums.txt\  ]]; then
   args+=("sha256sums.txt")
 fi
 if [[ "$INPUT_GENERATE_NOTES" ]]; then
