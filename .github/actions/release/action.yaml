@@ -33,12 +33,18 @@ inputs:
     description: Release title
     required: false
 
+outputs:
+  created:
+    description: Whether the release was created
+    value: ${{ steps.release.outputs.created }}
+
 runs:
   using: composite
   steps:
     - run: bash "${{ github.action_path }}/main.sh"
       shell: bash
       name: Create GitHub Release
+      id: release
       env:
         GH_TOKEN: ${{ inputs.token }}
         INPUT_REPO: ${{ inputs.repo }}

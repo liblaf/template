@@ -14,6 +14,7 @@ if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
   # shellcheck disable=SC2086
   sha256sum $INPUT_FILES > sha256sums.txt
   if diff "$tmpfile" "sha256sums.txt" > /dev/null; then
+    echo "created=false" >> "$GITHUB_OUTPUT"
     exit 0
   fi
 fi
@@ -46,3 +47,4 @@ elif [[ -n $INPUT_TAG ]]; then
   args+=(--title "$INPUT_TAG")
 fi
 "${args[@]}"
+echo "created=true" >> "$GITHUB_OUTPUT"
