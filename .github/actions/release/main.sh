@@ -10,7 +10,7 @@ if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
   # shellcheck disable=SC2086
   sha256sum $INPUT_FILES > sha256sums.txt
   sed --regexp-extended --expression="s|([[:xdigit:]]+)([[:blank:]])+.*/([^/]+)|\1\2\3|" --in-place "sha256sums.txt"
-  if diff "$tmpfile" "sha256sums.txt" > /dev/null; then
+  if diff --report-identical-files --side-by-side "$tmpfile" "sha256sums.txt"; then
     echo "created=false" >> "$GITHUB_OUTPUT"
     exit 0
   fi
