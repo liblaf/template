@@ -17,6 +17,10 @@ inputs:
     description: Chocolatey packages
     required: false
     default: ""
+  other:
+    description: Other packages
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -33,6 +37,10 @@ runs:
       shell: bash
       if: runner.os == 'Windows' && inputs.choco
       name: Chocolatey
+    - run: bash "${{ github.action_path }}/scripts/other/install.sh" ${{ inputs.other }}
+      shell: bash
+      if: inputs.other
+      name: Other
 
 branding:
   color: blue
