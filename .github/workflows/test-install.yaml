@@ -16,13 +16,18 @@ jobs:
           brew: coreutils gnu-tar make wget
           choco: gnuwin32-coreutils.install make wget
           other: poetry task
-      - run: |
-          install --version
-          make --version
-          poetry --version
-          tar --version
-          task --version
-          wget --version
+      - name: Check GNU coreutils
+        run: install --version
+      - name: Check GNU tar
+        run: tar --version
+      - name: Check GNU Make
+        run: make --version
+      - name: Check GNU Wget
+        run: wget --version
+      - name: Check Poetry
+        run: poetry --version
+      - name: Check Task
+        run: task --version
     strategy:
       matrix:
         os:
