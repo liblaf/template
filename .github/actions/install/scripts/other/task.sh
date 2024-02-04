@@ -4,6 +4,10 @@ set -o nounset
 set -o pipefail
 
 if [[ ! ":$PATH:" =~ ~/.local/bin: ]]; then
-  echo ~/.local/bin >> "$GITHUB_PATH"
+  if [[ $RUNNER_OS == "Windows" ]]; then
+    cygpath --windows ~/.local/bin >> "$GITHUB_PATH"
+  else
+    echo ~/.local/bin >> "$GITHUB_PATH"
+  fi
 fi
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
