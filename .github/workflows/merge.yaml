@@ -32,3 +32,4 @@ jobs:
           gh pr edit ${{ github.event.pull_request.html_url }} --add-label "automerge: exact"
         env:
           GH_TOKEN: ${{ github.token }}
+        continue-on-error: true
