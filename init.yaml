@@ -29,6 +29,8 @@ tasks:
       - cmd: install -D --mode="u=rw,go=r" --no-target-directory --verbose
           "{{.TASKFILE_DIR}}/{{.ITEM}}" "{{.GIT_ROOT}}/{{.ITEM}}"
         for:
+          - .github/auto-label.yaml
+          - .github/blunderbuss.yml
           - .github/dependabot.yaml
           - .github/workflows/merge.yaml
           - .github/workflows/template.yaml
