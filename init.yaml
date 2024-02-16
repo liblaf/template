@@ -33,6 +33,7 @@ tasks:
           - .github/blunderbuss.yml
           - .github/dependabot.yaml
           - .github/workflows/merge.yaml
+          - .github/workflows/pre-commit.yaml
           - .github/workflows/template.yaml
           - .pre-commit-config.yaml
         silent: true

@@ -5,7 +5,7 @@ import subprocess
 import sys
 from collections.abc import MutableMapping, MutableSequence, MutableSet, Set
 
-completed_process: subprocess.CompletedProcess = subprocess.run(
+process: subprocess.CompletedProcess[str] = subprocess.run(
     [
         "cspell",
         "lint",
@@ -26,9 +26,9 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
     check=True,
     text=True,
 )
-stdout: str = completed_process.stdout
+stdout: str = process.stdout
 words: Set[str] = set(word.lower() for word in stdout.splitlines())
-completed_process: subprocess.CompletedProcess = subprocess.run(
+process = subprocess.run(
     [
         "cspell",
         "trace",
@@ -43,8 +43,8 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
     check=True,
     text=True,
 )
-stdout: str = completed_process.stdout
-PATTERN: re.Pattern = re.compile(r"(?P<word>.*): (?P<not>Not )?Found")
+stdout: str = process.stdout
+PATTERN: re.Pattern[str] = re.compile(r"(?P<word>.*): (?P<not>Not )?Found")
 words_to_dictionaries: MutableMapping[
     str, MutableSequence[str]
 ] = collections.defaultdict(list)
@@ -78,7 +78,7 @@ config: str = json.dumps(
     ensure_ascii=False,
     sort_keys=False,
 )
-completed_process: subprocess.CompletedProcess = subprocess.run(
+process = subprocess.run(
     ["prettier", "--parser=json"],
     stdout=subprocess.PIPE,
     stderr=sys.stderr,
@@ -86,5 +86,5 @@ completed_process: subprocess.CompletedProcess = subprocess.run(
     input=config,
     text=True,
 )
-config: str = completed_process.stdout
+config: str = process.stdout
 print(config, end="")

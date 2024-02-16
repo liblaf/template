@@ -1,5 +1,17 @@
 {
-  "words": ["choco", "cygpath", "gomod", "liblaf", "mkdocs"],
+  "words": [
+    "choco",
+    "cygpath",
+    "gomod",
+    "jscoverage",
+    "liblaf",
+    "mkdocs",
+    "nuxt",
+    "pydantic",
+    "typer",
+    "vuepress",
+    "wscript"
+  ],
   "ignorePaths": ["*-lock.*", "*.lock", "cspell.json"],
   "dictionaries": [
     "bash",
@@ -9,7 +21,8 @@
     "dotnet",
     "makefile",
     "npm",
-    "python"
+    "python",
+    "typescript"
   ],
   "allowCompoundWords": true
 }

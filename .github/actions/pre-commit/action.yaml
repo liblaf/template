@@ -1,0 +1,25 @@
+name: pre-commit
+
+author: liblaf
+
+description: pre-commit
+
+inputs:
+  commit:
+    description: git commit
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - run: pipx install "git+https://github.com/${{ github.action_repository }}.git"
+      shell: bash
+      name: Install template
+      working-directory: ${{ github.action_path }}
+    - run: template pre-commit-ci
+      shell: bash
+      name: pre-commit
+      env:
+        AUTOFIX: ${{ inputs.commit }}
+        GH_TOKEN: ${{ inputs.token }}

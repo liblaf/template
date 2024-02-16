@@ -1,0 +1,7 @@
+{
+  "name": "template",
+  "version": "0.1.0",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
