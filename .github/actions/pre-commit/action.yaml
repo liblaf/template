@@ -6,9 +6,13 @@ description: pre-commit
 
 inputs:
   autofix:
-    description: git commit
+    description: Auto Fix
     required: false
     default: "false"
+  token:
+    description: GitHub Token
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: composite

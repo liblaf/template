@@ -1,0 +1,30 @@
+name: Enable Auto Merge
+
+author: liblaf
+
+description: Enable Auto Merge
+
+inputs:
+  token:
+    description: GitHub Token
+    required: false
+    default: ${{ github.token }}
+  pr:
+    description: PR URL
+    required: false
+    default: ${{ github.event.pull_request.html_url }}
+  user:
+    description: ""
+    required: false
+    default: ${{ github.event.pull_request.user.login }}
+
+runs:
+  using: composite
+  steps:
+    - run: bash "${{ github.action_path }}/main.sh"
+      shell: bash
+      name: Enable Auto Merge
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        INPUT_PR: ${{ inputs.pr }}
+        INPUT_USER: ${{ inputs.user }}
