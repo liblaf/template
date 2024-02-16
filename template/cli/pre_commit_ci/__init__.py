@@ -22,12 +22,11 @@ def main(
     with tempfile.NamedTemporaryFile(mode="w") as tmpfile:
         tmpfile.write(yaml.dump(config.model_dump(exclude_unset=True), sort_keys=False))
         tmpfile.flush()
-        subprocess.run(
+        pre_commit: subprocess.CompletedProcess[bytes] = subprocess.run(
             ["pre-commit", "run", "--config", tmpfile.name, "--all-files"],
             stdin=subprocess.DEVNULL,
             stdout=sys.stdout,
             stderr=sys.stderr,
-            check=not autofix,
         )
     if autofix:
         subprocess.run(
@@ -58,3 +57,4 @@ def main(
                 stderr=sys.stderr,
                 check=True,
             )
+    sys.exit(pre_commit.returncode)
