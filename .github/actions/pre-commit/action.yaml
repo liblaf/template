@@ -9,10 +9,6 @@ inputs:
     description: Auto Fix
     required: false
     default: "false"
-  token:
-    description: GitHub Token
-    required: false
-    default: ${{ github.token }}
 
 runs:
   using: composite
@@ -34,4 +30,3 @@ runs:
       name: pre-commit
       env:
         AUTOFIX: ${{ inputs.autofix }}
-        GH_TOKEN: ${{ inputs.token }}
