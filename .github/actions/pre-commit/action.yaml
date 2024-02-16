@@ -20,6 +20,11 @@ runs:
     - run: pip install pre-commit "git+https://github.com/liblaf/template.git"
       shell: bash
       name: Install CLI
+    - run: |-
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      shell: bash
+      name: Setup Git
     - run: template pre-commit-ci
       shell: bash
       name: pre-commit
