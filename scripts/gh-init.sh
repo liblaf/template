@@ -32,8 +32,7 @@ gh api "repos/$user/$repo/branches/main/protection" \
     "checks": [
       { "context": "Check", "app_id": 15368 },
       { "context": "conventionalcommits.org", "app_id": 37172 },
-      { "context": "GitGuardian Security Checks", "app_id": 46505 },
-      { "context": "pre-commit.ci - pr", "app_id": 68672 }
+      { "context": "GitGuardian Security Checks", "app_id": 46505 }
     ]
   },
   "enforce_admins": null,
