@@ -3,7 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-if python "$GITHUB_ACTION_PATH/main.py" "$INPUT_USER"; then
+if python "$GITHUB_ACTION_PATH/check.py" "$INPUT_USER"; then
   merge=true
 else
   merge=false
