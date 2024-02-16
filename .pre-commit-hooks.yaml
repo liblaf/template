@@ -34,3 +34,5 @@
   language: node
   types:
     - text
+  stages:
+    - pre-commit
