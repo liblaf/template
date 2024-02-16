@@ -17,7 +17,7 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: 3.x
-    - run: pip install "git+https://github.com/liblaf/template.git"
+    - run: pip install pre-commit "git+https://github.com/liblaf/template.git"
       shell: bash
       name: Install CLI
     - run: template pre-commit-ci

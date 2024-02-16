@@ -2,12 +2,23 @@
   "words": [
     "choco",
     "cygpath",
+    "cython",
+    "dmypy",
     "gomod",
+    "ipynb",
     "jscoverage",
     "liblaf",
+    "mdurl",
     "mkdocs",
     "nuxt",
+    "pybuilder",
+    "pycache",
     "pydantic",
+    "pyflow",
+    "pypa",
+    "pypackages",
+    "pytype",
+    "taplo",
     "typer",
     "vuepress",
     "wscript"
@@ -22,6 +33,7 @@
     "makefile",
     "npm",
     "python",
+    "python-common",
     "typescript"
   ],
   "allowCompoundWords": true
