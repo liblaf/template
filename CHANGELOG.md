@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/liblaf/template/compare/v1.0.0...v1.0.1) (2024-02-16)
+
+
+### Bug Fixes
+
+* **.github/workflows/pre-commit.yaml:** update autofix value to always run pre-commit ([1e368dc](https://github.com/liblaf/template/commit/1e368dc1cd9ca8876b4cc26d93f89af949b12a49))
+* **.github/workflows:** update pre-commit.yaml and pre-commit-config.yaml ([ecb476f](https://github.com/liblaf/template/commit/ecb476f22836bcea99721092d2d2f13520b81783))
+* **workflow:** add GitHub token to pre-commit workflow ([1439173](https://github.com/liblaf/template/commit/1439173ba370d50994741e0eae6912737950a134))
+
 ## [1.0.0](https://github.com/liblaf/template/compare/v0.1.0...v1.0.0) (2024-02-16)
 
 
