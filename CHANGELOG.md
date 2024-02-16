@@ -1,5 +1,82 @@
 # Changelog
 
+## [1.0.0](https://github.com/liblaf/template/compare/v0.1.0...v1.0.0) (2024-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* The script `setup-github.sh` has been renamed to `gh-init.sh`. If you have any existing references or dependencies on the old script, you will need to update them accordingly.
+
+### Features
+
+* **action:** add support for GitHub token ([7037c7e](https://github.com/liblaf/template/commit/7037c7e40b4f0fd6dc804f29e517a93c677c9e0a))
+* add all-in-one install action ([46a267c](https://github.com/liblaf/template/commit/46a267cb4baa9ee9e06848c0c55fca1d95aa0d89))
+* add configuration files for auto-labeling and blunderbuss ([b1ebd8c](https://github.com/liblaf/template/commit/b1ebd8cbc054d9e669bc32903660457df7df986c))
+* add default stages to pre-commit config ([dad7451](https://github.com/liblaf/template/commit/dad7451bcee792094710e45bfad90b034effdf71))
+* add GitHub action to check CI status ([3188099](https://github.com/liblaf/template/commit/318809930eb9655cd2529b69de446e9d845e1989))
+* add GitHub release action ([e69151a](https://github.com/liblaf/template/commit/e69151a9e8753f5e3414312ddc8dfc510e2fc2e9))
+* add init.yaml and sync-all.sh scripts ([ff23707](https://github.com/liblaf/template/commit/ff2370780cec5f490307618956ba5a13ddda15ea))
+* add init.yaml file ([2be81aa](https://github.com/liblaf/template/commit/2be81aa5e9ea61b3fa0f49c8065926cda24c9ccc))
+* add inputs for customizing GitHub release creation ([371e921](https://github.com/liblaf/template/commit/371e9211e30d9c656fb38340c4ebdf4d3be9e0b3))
+* add output for whether the release was created ([0e90f6b](https://github.com/liblaf/template/commit/0e90f6ba2a1a81740a943a6857a02c2414f1dc25))
+* add pre-commit hook for cargo test ([0422a21](https://github.com/liblaf/template/commit/0422a21bab530a7c0bb04cbef5e866f879fef2c1))
+* add pre-commit setup and workflow configuration ([56765a2](https://github.com/liblaf/template/commit/56765a2c770b6bcb03cce1a3ea4b8d0c606aecfd))
+* add Prettier hook to pre-commit configuration ([34ee880](https://github.com/liblaf/template/commit/34ee880e6e64fe3f4012bf5752f3177ed8f94fe5))
+* add script to clone all GitHub repositories ([3cb76d2](https://github.com/liblaf/template/commit/3cb76d2c90e9c7ce06b2bb62c2684d7218543f3f))
+* add script to install Poetry and workflow to test installation ([8c4bbb9](https://github.com/liblaf/template/commit/8c4bbb92a0a6f1a905df6cae48e078ad424efd0c))
+* add sed command to update file paths in sha256sums.txt ([676cfdd](https://github.com/liblaf/template/commit/676cfddc011d8c9023d9787373300ec3bd68addb))
+* add shellcheck hook to pre-commit config ([3bdfad2](https://github.com/liblaf/template/commit/3bdfad2fde4d53f8fffd6e191071d1aa85b74b31))
+* add support for including sha256sums.txt in release notes ([47e4f30](https://github.com/liblaf/template/commit/47e4f302b6f8d99f8c35ebc8761931ba8b262f88))
+* add support for modifying line breaks in LaTeX files ([b377c33](https://github.com/liblaf/template/commit/b377c33049668c9619960230cc4fc3e53a905648))
+* add support for overwriting and local configuration in latexindent ([35efc57](https://github.com/liblaf/template/commit/35efc574d3571ff4c73d8d49a936a3e4d180ba0e))
+* add unsafe flag to check-yaml pre-commit hook ([817425f](https://github.com/liblaf/template/commit/817425fca494284533e7be5079a15cd2eebad384))
+* **ci:** add cspell and latexindent to skip list ([eecec63](https://github.com/liblaf/template/commit/eecec63413c15e0df207a154d446d01b35aa054f))
+* **ci:** update CI workflow ([16a44b9](https://github.com/liblaf/template/commit/16a44b9d6376511ccd0ae52d96a47bb80af25610))
+* convert cspell configuration to JSON format ([e7af050](https://github.com/liblaf/template/commit/e7af05037b75f1721d51da2ab0701b3b5f40dcc8))
+* **dependabot:** add groups for different package ecosystems ([58a9fd8](https://github.com/liblaf/template/commit/58a9fd8d46b0e6617d593cd0ff0ae0debbbf3fc6))
+* **deps:** update prettier to v3.1.0 ([f795ae2](https://github.com/liblaf/template/commit/f795ae28d6c9389ab51326adb58dba1c35688322))
+* improve file comparison in release script ([2223878](https://github.com/liblaf/template/commit/222387854cfc07ec2b6779d424dab8fa537773c9))
+* improve file path extraction in release script ([556e12c](https://github.com/liblaf/template/commit/556e12c610bd427eb7271b277a06162ec3254927))
+* improve release action to delete existing tag before creating a new one ([d661005](https://github.com/liblaf/template/commit/d661005b7ee7057b70885ea215a8be846f632247))
+* improve release action to verify file integrity ([cc7e0ab](https://github.com/liblaf/template/commit/cc7e0ab8d92af502956d2844e21d6f4872e54d5b))
+* improve release action to verify file integrity ([5d3256e](https://github.com/liblaf/template/commit/5d3256eed52f890225100c5c431635f2bcdc000b))
+* increase maximum file size for added files in pre-commit hook ([91abbde](https://github.com/liblaf/template/commit/91abbde795f99941f6f1503b3d944f8b897bfd8a))
+* **install:** add support for installing other packages ([1747214](https://github.com/liblaf/template/commit/17472145d6118f4b2efd6a97766b8fbf8b4f9b58))
+* **poetry-export:** add output option to generate requirements.txt ([4cee53a](https://github.com/liblaf/template/commit/4cee53a1e923ebc57bb325fa935b481048caddb2))
+* **pre-commit:** add skip for cargo-check and cargo-clippy ([42dd832](https://github.com/liblaf/template/commit/42dd83260009cec92d6ca98b636502fa4166a0e9))
+* **pre-commit:** exclude tsconfig.json from check-json ([69015b2](https://github.com/liblaf/template/commit/69015b27e2fa95a78eebde231327aa4ca5c3698a))
+* update init.yaml to remove unnecessary tasks ([f7789fb](https://github.com/liblaf/template/commit/f7789fb0bb034f483dfda8dc2114d8dc2f64ed4b))
+* update pre-commit hooks and configurations ([7d78546](https://github.com/liblaf/template/commit/7d785462fb0408378ad4be2d027ecac6682fef0f))
+* **workflows:** add check job to ensure all checks pass before merging ([3032865](https://github.com/liblaf/template/commit/3032865ff52b54524d06f4d1a1db5adfd10d347c))
+* **workflows:** add write permission for actions and contents ([35ff4e9](https://github.com/liblaf/template/commit/35ff4e9d247ff252564092308d42cddb6a31989d))
+* **workflows:** add write permission for contents ([1148e31](https://github.com/liblaf/template/commit/1148e316c316f173c53bd899b12d6035cc51bf15))
+
+
+### Bug Fixes
+
+* **.github/actions/pre-commit/action.yaml:** setup Git configuration for GitHub Actions ([1f12165](https://github.com/liblaf/template/commit/1f1216566f939aaa7dc6c713265b41d29ace76ff))
+* **.github/actions/pre-commit:** update pre-commit action to use requirements.txt ([b606623](https://github.com/liblaf/template/commit/b606623554a0ab89d8bd3c2be0ee4f5e056283a8))
+* **.github/actions/pre-commit:** update setup process for Python ([fc40189](https://github.com/liblaf/template/commit/fc40189f085f3a2cea750ef436a1e1569b0e5e65))
+* **actions:** add scripts for enabling auto merge ([68f6875](https://github.com/liblaf/template/commit/68f68757f3cd536a752c988dbaf5b6277f556ac6))
+* **actions:** remove caching of pre-commit ([57e0b51](https://github.com/liblaf/template/commit/57e0b51444087089c72ba062ed5a45718c931851))
+* add caching for pre-commit to improve workflow efficiency ([e736856](https://github.com/liblaf/template/commit/e736856c99cc57ce18be76b8e74fbca9af81544a))
+* add cspell.config.yaml to ignorePaths ([215c3f5](https://github.com/liblaf/template/commit/215c3f5b53366458368ffad63afb9c70ff8780ba))
+* add ignorePaths for lock files ([fe1b7fd](https://github.com/liblaf/template/commit/fe1b7fd1f2ba0804687e7495133e17cf03bf6b94))
+* fix indentation issue in check.yaml ([de68dcf](https://github.com/liblaf/template/commit/de68dcfe88704e52be6d6b115bdbb9ebf86d4d6e))
+* **install:** ensure ~/.local/bin is added to PATH ([9200767](https://github.com/liblaf/template/commit/92007671721c4e6bcaa8c92cfa41d9a1bc45adf4))
+* **install:** update installation script to install Taskfile in local user's bin directory ([8365b14](https://github.com/liblaf/template/commit/8365b147b0549252f2937a7aade970fe53c7e57b))
+* **install:** update task.sh script to handle Windows OS ([91fb86c](https://github.com/liblaf/template/commit/91fb86cce1af52e227c0c23845ca168a4cc5dd70))
+* remove node_modules from .gitignore and add cache location for prettier hook ([83a5ef2](https://github.com/liblaf/template/commit/83a5ef2bc31dd40eca153689977f4be81e029208))
+* remove unnecessary entry in prettier hook ([09d20c0](https://github.com/liblaf/template/commit/09d20c043f609ebb77690d667ad20c65359a4a48))
+* update Dependabot schedule to daily ([3cba8a4](https://github.com/liblaf/template/commit/3cba8a408fb56957f01a9b6f49ddb4a8631af188))
+* update installation URL for pre-commit action ([6ea1336](https://github.com/liblaf/template/commit/6ea13363f39963a9874db28f59f51875cd7bc162))
+* update pip install command in pre-commit action ([366d9fe](https://github.com/liblaf/template/commit/366d9fef6b97e6e5baf81519e7cf6d0f06339b37))
+* update required status checks in gh-init.sh ([94515fe](https://github.com/liblaf/template/commit/94515feacda43a356310fd6cce6a4edc132222af))
+* use GH_TOKEN environment variable for GitHub token ([25e2685](https://github.com/liblaf/template/commit/25e26856e4af2be405e301cc6971e6fb9d1b79fd))
+* **workflow:** add condition to enable Merge-on-green ([39dab5c](https://github.com/liblaf/template/commit/39dab5cdcd7b2d72ec4b829ff8b7fc86d1277da6))
+* **workflows:** fix condition for merge job ([a21b496](https://github.com/liblaf/template/commit/a21b4964ecc756d21726a186616586e98176977e))
+* **workflows:** remove unnecessary permission and add token for checkout ([30edc36](https://github.com/liblaf/template/commit/30edc36f1e27743a33c152b490a0a03fc3abac46))
+
 ## [0.1.0](https://github.com/liblaf/template/compare/v0.0.0...v0.1.0) (2023-11-28)
 
 ### Features
