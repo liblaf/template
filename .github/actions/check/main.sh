@@ -4,7 +4,7 @@ set -o nounset
 set -o pipefail
 
 function checks() {
-  (gh pr checks "$INPUT_PULL_REQUEST" || true) |
+  (gh pr checks "$INPUT_PR" || true) |
     grep --invert-match "$GITHUB_RUN_ID"
 }
 
