@@ -13,10 +13,13 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: pipx install "git+https://github.com/liblaf/template.git"
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+    - run: pip install "git+https://github.com/liblaf/template.git"
       shell: bash
-      name: Install template
-      working-directory: ${{ github.action_path }}
+      name: Install CLI
     - run: template pre-commit-ci
       shell: bash
       name: pre-commit
