@@ -1,5 +1,8 @@
 default: fmt
 
+build: scripts/poetry-build.sh
+	bash "$<"
+
 fmt: fmt-pre-commit-config.yaml fmt-pre-commit-hooks.yaml fmt-pyproject.toml
 
 setup:

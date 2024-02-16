@@ -25,3 +25,5 @@ class Hook(pydantic.BaseModel):
     minimum_pre_commit_version: str = "0"
     args: Sequence[str] = pydantic.Field(default_factory=list)
     stages: Sequence[str] = pydantic.Field(default_factory=list)
+
+    additional_dependencies: Sequence[str] = pydantic.Field(default_factory=list)

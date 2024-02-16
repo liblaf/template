@@ -1,7 +1,9 @@
-name: CI
+name: Release
 
 on:
   push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -34,18 +36,35 @@ jobs:
     name: Release
     permissions:
       contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    outputs:
+      created: ${{ steps.release.outputs.releases_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: python
+
+  upload:
+    name: Upload
+    permissions:
+      contents: write
     needs:
       - build
-    if: github.ref == 'refs/heads/main'
+      - release
+    if: needs.release.outputs.created == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Download Artifacts
+      - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
-      - name: Create GitHub Release
-        uses: liblaf/template/.github/actions/release@main
-        with:
-          tag: dev
-          files: "*"
-          prerelease: true
+      - name: Upload Release Assets
+        run: |
+          sha256sum * > sha256sums.txt
+          gh release --repo "${{ github.repository }}" upload "${{ needs.release.outputs.tag }}" * --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
