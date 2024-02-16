@@ -37,10 +37,24 @@ def main(
             stderr=sys.stderr,
             check=True,
         )
-        subprocess.run(
-            ["git", "commit", "-m", config.ci.autofix_commit_msg],
+        process: subprocess.CompletedProcess[bytes] = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"],
             stdin=subprocess.DEVNULL,
-            stdout=sys.stdout,
-            stderr=sys.stderr,
-            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
+        if process.returncode == 1:
+            subprocess.run(
+                ["git", "commit", "-m", config.ci.autofix_commit_msg],
+                stdin=subprocess.DEVNULL,
+                stdout=sys.stdout,
+                stderr=sys.stderr,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "push"],
+                stdin=subprocess.DEVNULL,
+                stdout=sys.stdout,
+                stderr=sys.stderr,
+                check=True,
+            )

@@ -22,7 +22,7 @@ runs:
       with:
         path: ~/.cache/pre-commit
         key: ${{ hashFiles('.pre-commit-config.yaml') }}
-    - run: pip install pre-commit "git+https://github.com/liblaf/template.git"
+    - run: pip install --requirement "${{ github.action_path }}/requirements.txt"
       shell: bash
       name: Install CLI
     - run: |-
