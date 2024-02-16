@@ -36,3 +36,5 @@
     - text
   stages:
     - pre-commit
+  additional_dependencies:
+    - prettier@latest

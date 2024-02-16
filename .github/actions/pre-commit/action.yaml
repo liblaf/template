@@ -17,6 +17,11 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: 3.x
+    - name: Cache pre-commit
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pre-commit
+        key: ${{ hashFiles('.pre-commit-config.yaml') }}
     - run: pip install pre-commit "git+https://github.com/liblaf/template.git"
       shell: bash
       name: Install CLI
