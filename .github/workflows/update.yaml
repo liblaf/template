@@ -1,0 +1,35 @@
+name: Update
+
+on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  update:
+    name: Update
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Install Tools
+        run: |-
+          npm install --global prettier
+          pip install pre-commit "https://github.com/liblaf/pre-commit-hooks/releases/download/dev/pre_commit_hooks.tar.gz"
+      - name: Update
+        run: pch update
+      - name: Commit
+        uses: liblaf/pre-commit-hooks/.github/actions/commit@main
+        with:
+          message: "ci(pre-commit): pre-commit autoupdate"

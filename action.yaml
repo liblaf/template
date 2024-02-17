@@ -22,7 +22,7 @@ runs:
       name: Sync with Repository Template
       env:
         GH_TOKEN: ${{ inputs.token }}
-    - if: inputs.commit == 'true' || inputs.push == 'true'
+    - if: inputs.commit == 'true'
       name: Push Changes
       uses: liblaf/pre-commit-hooks/.github/actions/commit@main
       with:
