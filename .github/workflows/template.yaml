@@ -10,6 +10,7 @@ jobs:
   template:
     name: Template
     permissions:
+      actions: write
       contents: write
     runs-on: ubuntu-latest
     steps:
@@ -20,4 +21,5 @@ jobs:
       - name: Sync with Repository Template
         uses: liblaf/template@main
         with:
+          token: ${{ secrets.GH_TOKEN }}
           commit: true

@@ -21,7 +21,6 @@ pre-commit: $(GIT_ROOT)/.pre-commit-config.yaml
 # Auxiliaries #
 ###############
 
-
 define sync
 common: $(GIT_ROOT)/$(1)
 

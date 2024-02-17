@@ -5,24 +5,19 @@ author: liblaf
 description: Sync with repository template
 
 inputs:
-  commit:
-    description: Commit
-    required: false
-    default: "false"
   token:
     description: GitHub token
     required: false
     default: ${{ github.token }}
-  push:
-    description: Push
+  commit:
+    description: Commit
     required: false
     default: "false"
-    deprecationMessage: "Use `inputs.commit` instead"
 
 runs:
   using: composite
   steps:
-    - run: make --always-make --file="${{ github.action_path }}/init.mk"
+    - run: make --always-make --file="${{ github.action_path }}/init.mk" --ignore-errors
       shell: bash
       name: Sync with Repository Template
       env:
