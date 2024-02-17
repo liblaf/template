@@ -12,4 +12,5 @@ fi
 if "$merge"; then
   gh pr merge "$INPUT_PR" --auto --squash
   gh pr edit "$INPUT_PR" --add-label "automerge: exact" || true
+  echo "::notice ::Auto Merge PR $INPUT_PR"
 fi
