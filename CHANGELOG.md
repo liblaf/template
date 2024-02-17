@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.1](https://github.com/liblaf/template/compare/v1.0.0...v1.0.1) (2024-02-17)
+
+
+### Bug Fixes
+
+* **.github/workflows/pre-commit.yaml:** update autofix value to always run pre-commit ([1e368dc](https://github.com/liblaf/template/commit/1e368dc1cd9ca8876b4cc26d93f89af949b12a49))
+* **.github/workflows:** update pre-commit.yaml and pre-commit-config.yaml ([ecb476f](https://github.com/liblaf/template/commit/ecb476f22836bcea99721092d2d2f13520b81783))
+* **actions/merge:** update script to use check.py for validation ([87cb639](https://github.com/liblaf/template/commit/87cb6393a127d2b50abdf9cccaa977db4974ad94))
+* **actions:** update input key name in action.yaml and main.sh ([d13e2f1](https://github.com/liblaf/template/commit/d13e2f1f7d6a68ce8852e1332b01b6a7990da2dc))
+* add missing token for GitHub token in release workflow ([b373029](https://github.com/liblaf/template/commit/b3730294b8eb5e9d55af7f3899b74d0bb1e7529e))
+* fix running `bash "scripts/sync-all.sh"` command in .github/workflows/sync.yaml ([db27cae](https://github.com/liblaf/template/commit/db27cae49893733a8861d2dd28ccf0dcb51aae61))
+* fix subprocess.run call in pre_commit_ci/__init__.py ([24e1be5](https://github.com/liblaf/template/commit/24e1be57708e0b78da51840065ad60f9e21c61f9)), closes [#20](https://github.com/liblaf/template/issues/20)
+* **scripts:** remove unnecessary pre-commit.ci check in gh-init.sh ([04262d0](https://github.com/liblaf/template/commit/04262d002e5adc720d65510c5733ad12ff577492))
+* **workflow:** add GitHub token to pre-commit workflow ([1439173](https://github.com/liblaf/template/commit/1439173ba370d50994741e0eae6912737950a134))
+* **workflow:** remove unnecessary token variable in release job ([d285a2f](https://github.com/liblaf/template/commit/d285a2f5a4d849d47975aff73ef29a1d0e6b3ee9))
+
 ## [1.0.0](https://github.com/liblaf/template/compare/v0.1.0...v1.0.0) (2024-02-16)
 
 ### ⚠ BREAKING CHANGES
