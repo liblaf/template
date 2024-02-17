@@ -1,42 +1,37 @@
-name: Sync with Template Repository
+name: Sync
 
 author: liblaf
 
-description: Update current repository with template repository
+description: Sync with repository template
 
 inputs:
-  push:
-    description: Push changes to current repository
+  commit:
+    description: Commit
     required: false
     default: "false"
   token:
     description: GitHub token
     required: false
     default: ${{ github.token }}
+  push:
+    description: Push
+    required: false
+    default: "false"
+    deprecationMessage: "Use `inputs.commit` instead"
 
 runs:
   using: composite
   steps:
-    - name: Install Task
-      uses: arduino/setup-task@v2
-      with:
-        repo-token: ${{ github.token }}
-    - run: task --taskfile="${{ github.action_path }}/init.yaml"
+    - run: make --always-make --file="${{ github.action_path }}/init.mk"
       shell: bash
-      name: Sync with Template Repository
+      name: Sync with Repository Template
       env:
         GH_TOKEN: ${{ inputs.token }}
-    - run: |-
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add --all
-        if ! git diff --cached --quiet; then
-          git commit --message="ci: sync with template repository"
-          git push
-        fi
-      shell: bash
-      if: inputs.push == 'true'
+    - if: inputs.commit == 'true' || inputs.push == 'true'
       name: Push Changes
+      uses: liblaf/pre-commit-hooks/.github/actions/commit@main
+      with:
+        message: "ci: sync with repository template"
 
 branding:
   color: blue

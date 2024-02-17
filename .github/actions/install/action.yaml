@@ -1,4 +1,4 @@
-name: All-in-One Install
+name: Install
 
 author: liblaf
 
@@ -6,19 +6,19 @@ description: Install packages on various systems
 
 inputs:
   apt:
-    description: APT packages
+    description: APT Packages
     required: false
     default: ""
   brew:
-    description: Homebrew packages
+    description: Homebrew Packages
     required: false
     default: ""
   choco:
-    description: Chocolatey packages
+    description: Chocolatey Packages
     required: false
     default: ""
   other:
-    description: Other packages
+    description: Other Packages
     required: false
     default: ""
 
@@ -41,7 +41,3 @@ runs:
       shell: bash
       if: inputs.other
       name: Other
-
-branding:
-  color: blue
-  icon: package

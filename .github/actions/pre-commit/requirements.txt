@@ -1,2 +1,0 @@
-pre-commit
-template @ git+https://github.com/liblaf/template.git

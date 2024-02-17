@@ -1,8 +1,8 @@
-name: Enable Auto Merge
+name: Auto Merge
 
 author: liblaf
 
-description: Enable Auto Merge
+description: Enable auto-merge
 
 inputs:
   token:
@@ -14,7 +14,7 @@ inputs:
     required: false
     default: ${{ github.event.pull_request.html_url }}
   user:
-    description: ""
+    description: User
     required: false
     default: ${{ github.event.pull_request.user.login }}
 
