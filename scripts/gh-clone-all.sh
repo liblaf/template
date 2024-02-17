@@ -7,9 +7,9 @@ prefix=${1:-$HOME/github}
 
 mapfile -t repos < <(
   gh repo list \
-    --jq=".[].nameWithOwner" \
-    --json="nameWithOwner" \
-    --limit=1000 \
+    --jq ".[].nameWithOwner" \
+    --json "nameWithOwner" \
+    --limit 1000 \
     --no-archived \
     --source
 )

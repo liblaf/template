@@ -10,7 +10,7 @@ function checks() {
 
 function count() {
   checks |
-    cut --fields=2 |
+    cut --fields 2 |
     (grep --count "$@" || true)
 }
 

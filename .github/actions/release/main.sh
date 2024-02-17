@@ -17,7 +17,7 @@ if [[ -n $INPUT_TAG && -n $INPUT_FILES ]]; then
 fi
 
 if [[ -n $INPUT_TAG ]]; then
-  gh release --repo="$INPUT_REPO" delete "$INPUT_TAG" --cleanup-tag || true
+  gh release --repo "$INPUT_REPO" delete "$INPUT_TAG" --cleanup-tag || true
 fi
 
 args=(gh release)
