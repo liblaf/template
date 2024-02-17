@@ -29,6 +29,8 @@ jobs:
           pip install pre-commit "https://github.com/liblaf/pre-commit-hooks/releases/download/dev/pre_commit_hooks.tar.gz"
       - name: Update
         run: pch update
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Commit
         uses: liblaf/pre-commit-hooks/.github/actions/commit@main
         with:
