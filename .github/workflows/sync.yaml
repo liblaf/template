@@ -16,6 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Sync All Repositories
-        run: bash scripts/sync-all.sh
+        run: bash "scripts/sync-all.sh"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

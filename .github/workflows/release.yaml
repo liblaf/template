@@ -9,8 +9,28 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  release:
+    name: Release
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    outputs:
+      created: ${{ steps.release.outputs.releases_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          release-type: python
+
   build:
     name: Build
+    needs:
+      - release
+    if: needs.release.outputs.created == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,23 +51,6 @@ jobs:
         with:
           name: python
           path: dist/*
-
-  release:
-    name: Release
-    permissions:
-      contents: write
-      pull-requests: write
-    runs-on: ubuntu-latest
-    outputs:
-      created: ${{ steps.release.outputs.releases_created }}
-      tag: ${{ steps.release.outputs.tag_name }}
-    steps:
-      - id: release
-        name: Release Please
-        uses: google-github-actions/release-please-action@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          release-type: python
 
   upload:
     name: Upload

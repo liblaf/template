@@ -50,11 +50,8 @@ class RepoLocal(pydantic.BaseModel):
     hooks: Sequence[Hook]
 
 
-Repo = RepoRemote | RepoLocal
-
-
 class Config(pydantic.BaseModel):
     """https://pre-commit.com/#pre-commit-configyaml---top-level"""
 
     ci: CI = pydantic.Field(default_factory=CI)
-    repos: Sequence[Repo]
+    repos: Sequence[RepoRemote | RepoLocal]

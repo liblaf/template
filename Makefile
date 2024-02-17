@@ -1,13 +1,31 @@
-default: fmt
+NAME := template
+
+default: fmt mypy ruff stub
 
 build: scripts/poetry-build.sh
 	bash "$<"
 
 fmt: fmt-pre-commit-config.yaml fmt-pre-commit-hooks.yaml fmt-pyproject.toml
 
+mypy:
+	mypy --strict --package "$(NAME)"
+
+ruff:
+	ruff format
+	ruff check --fix --unsafe-fixes
+
 setup:
-	micromamba create --yes --name "template" python poetry
-	micromamba run --name "template" poetry install
+	micromamba create --yes --name "$(NAME)" python poetry
+	micromamba run --name "$(NAME)" poetry install
+	micromamba run --name "$(NAME)" mypy --install-types --non-interactive
+
+stub:
+	stubgen --include-docstrings --output "." --package "$(NAME)"
+	$(MAKE) ruff
+	stubtest "$(NAME)"
+
+update:
+	template pre-commit update
 
 ###############
 # Auxiliaries #

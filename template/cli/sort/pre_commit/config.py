@@ -8,7 +8,7 @@ from template.external import prettier as _prettier
 from template.pre_commit import config as _config
 
 
-def str_presenter(dumper: yaml.SafeDumper, data: str) -> yaml.ScalarNode:
+def _str_presenter(dumper: yaml.SafeDumper, data: str) -> yaml.ScalarNode:
     """configures yaml for dumping multiline strings
 
     Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data"""
@@ -27,7 +27,7 @@ def main(
     for repo in config.repos:
         repo.hooks = sorted(repo.hooks, key=lambda hook: hook.id)
     config.repos = sorted(config.repos, key=lambda repo: repo.repo)
-    yaml.SafeDumper.add_representer(str, str_presenter)
+    yaml.SafeDumper.add_representer(str, _str_presenter)
     output: str = _prettier.pretter(
         yaml.safe_dump(config.model_dump(exclude_unset=True), sort_keys=False),
         parser="yaml",

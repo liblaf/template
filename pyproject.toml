@@ -11,15 +11,21 @@ readme = "README.md"
 version = "1.0.0"
 
 [tool.poetry.dependencies]
+httpx = { extras = ["socks"], version = "^0.26.0" }
+loguru = "^0.7.2"
 pydantic = "^2.6.1"
 python = "^3.11"
 pyyaml = "^6.0.1"
 rich = "^13.7.0"
+semver = "^3.0.2"
+typeguard = "^4.1.5"
 typer = "^0.9.0"
-types-pyyaml = "^6.0.12.12"
 
 [tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
 poetry = "^1.7.1"
+poetry-plugin-export = "^1.6.0"
+pre-commit = "^3.6.1"
 ruff = "^0.2.1"
 
 [tool.poetry.scripts]
