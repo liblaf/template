@@ -3,6 +3,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+DEBUG="${RUNNER_DEBUG-}"
+case "${DEBUG,,}" in
+  true | 1 | yes | y) set -o xtrace ;;
+esac
+
 mapfile -t repos < <(
   gh repo list \
     --jq ".[].nameWithOwner" \
